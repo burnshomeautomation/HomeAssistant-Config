@@ -1,0 +1,283 @@
+#################################################################
+  - platform: template
+    scan_interval: 5
+    switches:
+      kitchentv:
+        friendly_name: 'Kitchen TV'
+        value_template: "{{ is_state_attr('media_player.kitchenfiretv','standby') }}" 
+        turn_on:
+          - service: script.turn_on
+            data:
+             entity_id: script.kitchen_tv_power
+          - service: media_player.turn_on
+            data:
+              entity_id: media_player.kitchenfiretv
+        turn_off:
+          - service: script.turn_on
+            data:
+              entity_id: script.kitchen_tv_power
+          - service: media_player.turn_off
+            data:
+              entity_id: media_player.kitchenfiretv
+#################################################################
+  - platform: template
+    scan_interval: 5
+    switches:
+      livingroomtv:
+        friendly_name: 'Livingroom TV'
+        value_template: "{{ is_state('device_tracker.livingroomtv','home') }}"
+        turn_on:
+          - service: switch.turn_on
+            data:
+              entity_id: switch.lr_tv_power_toggle
+          - service: media_player.turn_on
+            data:
+              entity_id: media_player.livingroom_atv
+        turn_off:
+          - service: media_player.turn_off
+            data:
+              entity_id: media_player.livingroom_tv
+          - service: media_player.turn_off
+            data:
+              entity_id: media_player.livingroom_atv
+#################################################################
+  - platform: template
+    scan_interval: 5
+    switches:
+      bedroomtv:
+        friendly_name: 'Bedroom TV'
+        value_template: "{{ is_state('media_player.bedroom_atv','home') or is_state('media_player.bedroom_atv', 'playing')}}"
+        turn_on:
+          - service: script.turn_on
+            data:
+              entity_id: script.br_tv_power_toggle
+          - service: media_player.turn_on
+            data:
+              entity_id: media_player.bedroom_atv
+        turn_off:
+          - service: script.turn_on
+            data:
+              entity_id: script.br_tv_power_toggle
+          - service: media_player.turn_off
+            data:
+              entity_id: media_player.bedroom_atv
+#################################################################
+  - platform: mqtt
+    name: "Back Porch Lights"
+    command_topic: "sonoff/cmnd/back_porch/POWER2"
+    state_topic: "sonoff/stat/back_porch/POWER2"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+################################################################
+  - platform: mqtt
+    name: "Back Outside Floodlights"
+    command_topic: "sonoff/cmnd/back_porch/POWER1"
+    state_topic: "sonoff/stat/back_porch/POWER1"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+################################################################
+  - platform: mqtt
+    name: "Kitchen Cabinet Switch"
+    command_topic: "sonoff/cmnd/kitchencabinetswitch/POWER"
+    state_topic: "sonoff/stat/kitchencabinetswitch/POWER1"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+################################################################
+  - platform: mqtt
+    name: "Small Hallway Switch1"
+    command_topic: "sonoff/cmnd/smallhall1/POWER"
+    state_topic: "sonoff/stat/smallhall1/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+################################################################
+  - platform: mqtt
+    name: "Small Hallway Switch2"
+    command_topic: "sonoff/cmnd/smallhall2/POWER"
+    state_topic: "sonoff/stat/smallhall2/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+###############################################################
+  - platform: mqtt
+    name: "Master Bedroom Fan"
+    command_topic: "sonoff/cmnd/masterbrfan/POWER"
+    state_topic: "sonoff/stat/masterbrfan/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+###############################################################
+  - platform: mqtt
+    name: "Water Heater A"
+    command_topic: "tuya/cmnd/wh_a/POWER"
+    state_topic: "tuya/stat/wh_a/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+###############################################################
+  - platform: mqtt
+    name: "Front Foyer Light"
+    command_topic: "shelly/cmnd/foyer_light/POWER"
+    state_topic: "shelly/stat/foyer_light/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+###############################################################
+  - platform: mqtt
+    name: "Side Door Light"
+    command_topic: "shelly/cmnd/sidedoor-light/POWER"
+    state_topic: "shelly/stat/sidedoor-light/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true  
+###############################################################
+  - platform: mqtt
+    name: "Gameroom Light Switch"
+    command_topic: "zemi/cmnd/gameroom-switch/POWER1"
+    state_topic: "zemi/stat/gameroom-switch/POWER1"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true   
+
+###############################################################
+  - platform: mqtt
+    name: "Gameroom Fan Switch"
+    command_topic: "zemi/cmnd/gameroom-switch/POWER2"
+    state_topic: "zemi/stat/gameroom-switch/POWER2"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true    
+
+###############################################################
+  - platform: mqtt
+    name: "Gameroom Fan Light Switch"
+    command_topic: "zemi/cmnd/gameroom-switch/POWER3"
+    state_topic: "zemi/stat/gameroom-switch/POWER3"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+###############################################################
+  - platform: mqtt
+    name: "Gameroom Light Switch 2"
+    command_topic: "shelly/cmnd/gameroom-switch2/POWER"
+    state_topic: "shelly/stat/gameroom-switch2/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true 
+###############################################################
+####DOCKER CONTAINERS
+##unifi
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/unifi
+    name: Unifi
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+##portainer
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/portainer
+    name: Portainer
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+##ha-dockermon
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/dockermon
+    name: HA-dockermon
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+##TasmoAdmin
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/tasmoadmin
+    name: TasmoAdmin
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+##Mosquitto
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/mosquitto
+    name: Mosquitto
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+##adb
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/adb
+    name: ADB
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+##glances
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/glances
+    name: Glances
+    body_on: '{"state": "start"}'
+    body_off: '{"state": "stop"}'
+    is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+###############################################################################
+  - platform: wake_on_lan
+    name: Gandalf
+    mac_address: "2c:fd:a1:6f:90:3c"
+    host: 10.10.10.10
+    turn_off:
+      service: script.sleep_gandalf
+  - platform: wake_on_lan
+    name: Adrians Trash Can
+    mac_address: "80:00:6e:f1:1c:ce"
+    host: 10.10.10.13
+  - platform: wake_on_lan
+    name: Nicoles Mac
+    mac_address: "c8:bc:c8:e0:fb:d7"
+    host: 10.10.10.24
+  - platform: wake_on_lan
+    name: Adrians Mac Pro
+    mac_address: "e8:06:88:cc:24:5f"
+    host: 10.10.10.20
+###############################################################################
+  - platform: broadlink
+    host: 10.10.10.18
+    mac: '34:EA:34:6F:F9:80'
+    switches:
+      lr_fanlight_power:
+        friendly_name: "Livingroom Fan Light Power"
+        command_on: 'sgCwAQwMGQ0ZDBkZDQwZDBkaDBkMDBkaDBkMDBoYDRkMGQwaDAwZDRkMGRkNGQwMGhkMGQwNGQABNQ0MGQwZDRkZDA0ZDBkZDRkMDBkaDBkMDRkZDBoMGgwZDAwaDBkNGRkMGgwMGhkMGQ0MGQABNgwMGQ0ZDBkZDQwZDBkZDBoMDRkZDBkNDBkZDRkMGQwZDA0ZDBkNGRkMGQwNGRkMGQ0MGQABNQwNGQwZDBoZDAwZDRkZDRgNDBkZDBkNDBkZDBkNGQwZDA0ZDBkNGRkMGgsNGRoLGgwMGgABNgwMGQwaDBkZDQwZDBkaCxoMDBkaCxoMDBkaDBkMGQwaCw0ZDBkMGRoMGQwNGRkMGQwNGQABNgwMGQ0ZDBkZDA0ZDBkaDBkMDBoZDBkMDRkZDBoMGQwZDAwaDBkMGRoMGQwMGRkNGQwMGgABNQwMGgwZDBkaCw0ZDBkaDBkMDBkZDRkMDBkaCxoMGQwZDA0ZDRgNGRkMGQ0MGRkMGQ0MGQABYQ0MGQ0ZDBkZDQwaDBkaDBkMDBoZDBoMDRkZDRkMGQwaDAwaDBkNGRoMGQwNGRkMGQ0MGgAF3AAAAAAAAAAA'
+        command_off: 'sgDmAQwMGgwZDRkaDAwaDBkZDBoMDBkaDBkMDRkZDRkMGQwaDAwZDRkMGRoLGgwNGBoMGQwMGgABNQwNGQwZDBkaDAwZDRkZDBkNDBkZDBoLDRkZDBoMGQwZDAwZDRkMGRkNGQwNGRkMGQwNGQABNQwNGQwZDRgaDA0ZDBkZDBoMDRgaDBkMDRkZDBoLGgwZDA0ZDBkNGRkMGgwMGRoLGgwMGQABNQwNGQwZDRkZDA0ZDBkZDBkMDRkZDBkNDBkZDBoLGQ0ZDA0ZDBkMGRoMGQwNGBoMGQwMGQABNwwMGQwZDRkZDA0YDRkZDBoMDBkZDBoMDBkZDBoMGQwZDA0ZDBkNGRkMGQwNGRoLGgwMGQABNQ0MGQwaDBkZDA0ZDBkaDBkMDRkZDBoMDBkZDBoMGQwaDAwZDRkMGRoMGQwMGRkMGgwMGQABNQwNGQwZDBkaDA0ZDBkZDBoMDBkZDBkMDRkZDBkMGQwaDAwZDRkMGRoLGgwMGRoMGQwNGQABNQwNGQwZDBkaCw0ZDBkaDBkMDBoZDBkMDRkZDBoLGgwZDAwZDRgNGRkMGgwMGRoMGQwMGQABaAwMGQ0ZDBkaDAwZDRkZDBkMDRkZDBkMDRgaDBkMGQwaCw0ZDBkNGRkMGQwNGRoLGgwMGQAF3AAA'
+      lr_fan_speed_down:
+        friendly_name: "Livingroom Fan Speed Down"
+        command_on: 'sgDmAQwMGQ0ZDBkaDAwZDRkZDBkMDRkZDBoMDBkaDBkMGQwaCw0ZDRkMGQwZDBoMGRoLGgwMGQABNwsNGQwZDBkaDAwZDRkZDBkMDRkZDBkMDRkZDBkMGQwaDAwZDRkMGQ0ZDBkMGRoLGgwNGAABNwwMGQ0ZDBkZDA0ZDBkZDBkNDBkaCxoMDBkZDBoMGQwZDQwZDBkMGQ0ZDBkNGRkMGgwMGQABNgsNGQwZDRkZDA0ZDBkZDBoMDBkaDBkMDRkZDBoLGgwZDA0ZDBkMGQ0ZDBkNGRkMGQwMGQABNg0MGQ0YDRkZDA0ZDBkaDBkMDBkZDRgNDBkZDBkMGgwZDA0ZDBkMGQ0ZDBkNGRkMGgsNGQABNgwNGA0ZDBkZDQwZDRkZCxoMDRgaDBkMDBoZDBkMGQwaDAwZDBoMGQwZDRgNGRkMGgwMGQABNgwNGQwZDBkaDAwZDRkZDBoLDRkZDBkNDBkaCxoMGQwZDQwZDBkNGQwZDRkMGRkMGgwMGQABNgwMGQ0ZDBkaCw0ZDRkZDBkMDBkaDBkMDRgaDBkMGQwaCw0ZDBkNGQwZDRgNGRoLGgwMGQABaQwNGA0ZDBkaCw0ZDRkZDBkMDRgaDBoMDBkZDBoMGQwaCw0ZDBkNGQwZDBkNGRkMGgsNGQAF3AAA'
+        command_off: 'sgBSAgwMGQ0ZDBkaDAwZDRkZDBoLDRkZDBoMDBkaDBkMGQwaDAwZDRkMGQwZDRkaCxoMDBkNGQABNgwMGQwZDRkaCw0ZDRkZDBkMDRkZDBkMDRkZDBkMGgsaDAwZDRkMGQ0ZDBkZDBoLDRkMGQABNwwMGQ0YDRkZDAwZDRkZDBoLDRkZDBoLDRkZDBoLGgwZDAwZDRkMGQ0YDRkaCxoLDRkNGAABNwsNGQ0YDRgaDAwZDRkZDBkMDRkaCxoMDRgaDBkMGgwZDAwZDRgNGQwZDRkZDBkMDRkMGQABNwwNGA0YDRkaCw0ZDBkaDBkMDBkaCxoMDBkaCxoMGQwZDA0YDRkNGA0ZDRgaDBkMDBkNGAABNwwMGQ0ZDBkaCw0ZDBkZDBoLDRkaCxoMDBkaCxoMGQwZDA0ZDBkNGQwZDBkaDBkMDRgNGQABNgwMGQ0ZDBkZDA0ZDBkaCxoMDRgaDBoLDRkZDBkNGQwZDAwZDRkNGQwZDBkaCxoMDRgNGQABNgwNGQwZDRkZDAwZDRkZDBkMDRkZDBkMDRgaCxoMGQwaDAwZDBkNGQwZDRkZDBkMDRkMGQABNgwMGQ0ZDRkZDAwZDRgaDBkMDRgaDBkMDBkaCxoMGQwaDAwZDRkMGQwZDRkZDBkMDRkMGQABNgwMGQ0ZDBkaCw0ZDBkaDBkMDRkZDBoLDRkaCxoMGQwZDA0ZDBkNGQwZDRkZDBkMDRgOGAABYgsNGQwZDRkZDA0ZDBkZDBoLDRkaCxoMDBkaCxoMGQwZDA0ZDRgNGA0ZDBkaDBkMDBkNGQAF3AAAAAAAAA'
+      lr_fan_power:
+        friendly_name: "Livingroom Fan Power"
+        command_on: 'sgDmAQsNGQwaDBkaDAwZDRkZDBkMDRkaDBkMDRkZDBkNGQwZDQwZDBoMGgwZDRkNGQwZGgwMGgABNgwMGgwaDBkaDAwaDBkaDBkNDBoZDBkNDBkZDRkMGQwaCw0ZDRkMGQwaDBkNGQwZGgsNGQABNgwNGQwaDBoZDQwZDRoZDBkMDBoZDBkMDRkaCxoMGgsaDA0ZDBoMGQ0ZDBoMGQwaGQwMGgABOAwMGgwZDRkZDA0ZDBkZDRkMDRkaDBoLDRkaDBkMGgwZDAwaDBkNGQ0ZDBkNGQwZGgwMGgABNQwNGQ0ZDBoZDA0ZDRkZDBoMDBkaDBoMDBkaDBoMGQwZDQwZDRkNGQ0ZDRkMGgwZGgwMGgABNgwMGgwaDBkaDA0ZDBkaDBkMDRkZDRkMDBoZDBoMGgwZDA0ZDBkNGQwZDBoMGQwZGQ0MGQABNgwMGQ0ZDBkaDAwZDBkaCxoMDBkaDBkMDBkaDBkMGQwaCw0ZDBkMGQ0ZDRkMGQwZGQwNGQABNgwMGQ0ZDBkaCw0ZDBkaDBkMDRkZDBkMDRkZDBoMGQwZDA0ZDBkMGQ0ZDBkNGQwZGQwNGQABaAwMGQ0ZDBkaCw0ZDBkaDBkMDBkaDBkMDRgaDBkMGgsaDAwZDBkNGQwaDBkMGQ0ZGQwMGQAF3AAA'
+        command_off: 'sgCAAA4NGA0YDRkNGA0YDRkMGQ0ZAAE2DAwZDRgNGRkMDRgNGRkMGQwNGRkMGgwMGRkMGgwZDBkMDRkMGQ0YDRkMGQ0YDRkMGQ0YAAFmCw0ZDBkNGBoLDRkNGRkMGQwNGRkLGgsNGRoLGgsaDBkMDRkMGQwZDRkMGQ0YDRkMGQ0ZAAXcAAAAAAAAAAA'
+      lr_tv_power_toggle:
+        friendly_name: "Livingroom TV Power Toggle"
+        command_on: 'JgDuAAABKZMTEhQQFTUUERITFBEUERQQFTUUNhQRFDUVNRQ2FDYTNhMTExEUERQ2ERQUEBURExEVNRQ2FDYTERU1FDYUNhQ1EwAFFgABKkgUAAxIAAEqSBQADEgAASpJFAAMSAABKEkVAAxIAAEpSRQADEgAASpIFQAMSAABKUgVAAxIAAEpSRQADEgAASpIFQAMSAABKEkVAAxIAAEpSRQADEgAASpIFAAMSAABKkgVAAxIAAEpSRQADEgAASpIFAAMSAABKkgVAAxIAAEpSBUADEgAASpIFAAMSAABKkgUAAxIAAEqSBUADEgAASkADQUAAAAAAAAAAAAA'
+        command_off: 'JgDuAAABKZMTEhQQFTUUERITFBEUERQQFTUUNhQRFDUVNRQ2FDYTNhMTExEUERQ2ERQUEBURExEVNRQ2FDYTERU1FDYUNhQ1EwAFFgABKkgUAAxIAAEqSBQADEgAASpJFAAMSAABKEkVAAxIAAEpSRQADEgAASpIFQAMSAABKUgVAAxIAAEpSRQADEgAASpIFQAMSAABKEkVAAxIAAEpSRQADEgAASpIFAAMSAABKkgVAAxIAAEpSRQADEgAASpIFAAMSAABKkgVAAxIAAEpSBUADEgAASpIFAAMSAABKkgUAAxIAAEqSBUADEgAASkADQUAAAAAAAAAAAAA'
+      lr_fan_speed_up:
+        friendly_name: "Livingroom Fan Speed Up"
+        command_on: 'sgB6AQwMGQwZDRkZDA0ZDBkaDBkMDBkaDBkMDRkZDBkMGgsaDAwZDBoMGQwZDRkMGQ0ZGQwNGQABNgwMGQwZDRkZDA0ZDBkZDRkLDRkZDBkNDBkZDBkMGgsaDA0YDRkMGQwZDRkMGQ0ZGQwNGAABNwwMGQ0ZDBkZDAwaDBkZDBoMDBkaDBkMDBkaDBkMGQwaCw0ZDBkMGQ0ZDRkMGQwZGQwNGQABNgwMGQ0ZDBkaCw0ZDBkaCxoMDRgaDBkMDRkZDBoMGQwZDA0ZDBkNGQwZDBkNGA0ZGQwMGQABNwwNGQwZDRkZDAwZDRkZDBoLDRkZDBkMDRkZDBkMGQwZDQwZDBkNGQwZDBoMGQwZGgsNGQABNgwMGQ0ZDBkZDA0YDRkZDRkMDBkaCxoMDBkaCxoMGQwZDQwZDBkNGQwZDBkNGQwZGQ0MGQABZQwNGQwZDRkZDAwZDRkZDBkMDRkZDBkMDRkZDBkMGQwaDAwZDRkMGQ0ZDBkNGA0ZGQwNGQAF3AAAAAAAAAAAAAAAAAAA'
+        command_off: 'sgBEAQwMGQ0ZDBkaCw0ZDBkaDBkMDRkZDBoLDRkaCxoMGQwZDA0ZDBkNGA0ZDRkMGQwZGgsNGQABNwsNGQwZDRkZDA0ZDBkZDBkMDRkZDBkNDBkZDBkMGgwZDAwZDRkMGQwZDRkMGQwZGgwMGQABNwwNGQwZDRkZDAwZDBkaDBkMDRkZDBoLDRkZDBkNGQwZDA0ZDBkMGQ0ZDBkMGQ0ZGgsNGQABNgwMGgwZDBkaDAwZDRkZDBkNDBkZDBoLDRkZDBoMGQwaCw0ZDBoMGQwZDBkNGQ0YGgwMGQABNwsNGQwZDRkZCw0ZDRkZDBkMDRkZDBkMDBkaDBkMGQwaDAwZDRkMGQwZDRgNGQ0YGgwMGQABagwMGQ0ZDBkZDA0ZDBkaCxoMDBkaDBkMDRkZDBoMGQwZDA0ZDBkMGQ0ZDBkNGA0ZGQwMGQAF3AAAAAA'
+
+  - platform: command_line
+    switches:
+      reboot_gandalf:
+        command_on: /usr/bin/ssh -l mrbur 10.10.10.10 'shutdown -r now'
+        command_off: /usr/bin/ssh -l mrbur 10.10.10.10 'shutdown -r now'
+      sleep_gandalf:
+        command_on: 'curl -k http://10.10.10.10:8000/?action=System.Sleep'
+        command_off: 'curl -k http://10.10.10.10:8000/?aciton=System.Sleep'
+      reboot_trashcan:
+        command_on: /usr/bin/ssh -l adrian 10.10.10.13 'sudo reboot now'
+        command_off: /usr/bin/ssh -l adrian 10.10.10.13 'sudo reboot now'
+      reboot_macpro:
+        command_on: /usr/bin/ssh -l adrian 10.10.10.20 'sudo reboot now'
+        command_off: /usr/bin/ssh -l adrian 10.10.10.20 'sudo reboot now'
+      reboot_plex:
+        command_on: /usr/bin/ssh -l adrian 10.10.10.19 'sudo reboot now'
+        command_off: /usr/bin/ssh -l adrian 10.10.10.19 'sudo reboot now'
