@@ -1,0 +1,173 @@
+homeassistant:
+  name: Home
+  latitude: !secret lat
+  longitude: !secret long
+  elevation: 141
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+
+default_config:
+frontend:
+  themes: !include_dir_merge_named themes/
+
+config:
+lovelace:
+  mode: yaml
+http:
+updater:
+  include_used_components: true
+
+discovery:
+  enable: 
+    - homekit
+
+conversation:
+system_health:
+history:
+logbook:
+logger:
+
+recorder:        
+  purge_keep_days: 5
+  purge_interval: 1
+  exclude:
+    domains:
+      - weblink
+      - updater  
+      - automation
+      - group
+      - light
+      - script
+      - switch
+      - zone
+      - zwave
+
+skybell:
+  username: !secret email
+  password: !secret pw
+
+map:
+sun:
+
+climate:
+  platform: honeywell
+  username: !secret email
+  password: !secret pw
+  region: us
+  scan_interval: 1000
+
+media_player:
+  - platform: lg_netcast
+    host: 10.10.10.14
+    name: 'Livingroom TV'
+    access_token: !secret lg_accesstoken
+  - platform: samsungtv
+    name: 'Gameroom TV'
+    host: 10.10.10.123
+  - platform: androidtv
+    name: 'Kitchen FireTV'
+    host: 10.10.10.17
+    adb_server_ip: 10.10.10.28
+    adb_server_port: 5037
+    
+
+alexa_media:
+  accounts:
+    - email: !secret alexa_email
+      password: !secret alexa_password
+      url: amazon.com
+      exclude_devices:
+        - "Adrian's Alexa Apps"
+        - "Adrian's echosim_BETA"
+        - "Allyson's Fire"
+        - "Kaiden's Fire"
+        - "Bedroom firetv stick"
+        - "Kitchen Touchpad"  
+        - "LR Touchpad"
+        - "This Device"
+
+device_tracker:
+  - platform: unifi
+    host: 10.10.10.28
+    username: !secret unifi_user
+    password: !secret unifi_pw
+    verify_ssl: 'False'
+    track_new_devices: false
+  - platform: ping
+    hosts:
+      ap1: 10.10.10.6
+      ap2: 10.10.10.7
+      camera_dvr: 10.10.10.9
+      livingroomtv: 10.10.10.14
+      adrianstrashcan: 10.10.10.13
+
+ios: 
+  push:
+    categories:
+      - name: cameras
+        identifier: 'camera'
+        actions:
+          - identifier: 'FRONT_OUTSIDE_LIGHTS'
+            title: 'Turn on Front Outside Lights'
+          - identifier: 'BACK_OUTSIDE_LIGHTS'
+            title: 'Turn on Back Outside Lights'
+          - identifier: 'BACK_PORCH_LIGHTS'
+            title: 'Turn on Back Porch Lights'
+
+
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - download
+    - upload
+
+mqtt:
+  broker: 10.10.10.28
+  protocol: 3.1
+  keepalive: 60
+  client_id: hassio-1
+  username: !secret mqtt_user
+  password: !secret mqtt_pw
+
+apple_tv:
+  - host: 10.10.10.119
+    name: Livingroom-ATV
+    login_id: !secret atv_login_id
+    credentials: !secret atv_cred_id
+    start_off: true
+  - host: 10.10.10.11
+    name: Bedroom-ATV
+    login_id: !secret atv_login_id
+    credentials: !secret atv_cred_id
+    start_off: true
+
+tuya:
+  username: !secret tuya_un
+  password: !secret tuya_pw
+  country_code: 1
+
+
+wake_on_lan:
+
+camera: !include cameras.yaml
+stream:
+cloud: !include cloud.yaml
+notify: !include notify.yaml
+switch: !include switch.yaml
+sensor: !include sensor.yaml
+binary_sensor: !include binary_sensor.yaml
+light: !include light.yaml
+fan: !include fan.yaml
+remote: !include remote.yaml
+input_select: !include input_select.yaml
+
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+panel_iframe: !include panel_iframe.yaml
+group: !include groups.yaml
+automation: !include_dir_merge_list automations
+script: !include_dir_merge_named script_configs
