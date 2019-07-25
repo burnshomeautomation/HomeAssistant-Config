@@ -7,12 +7,12 @@
 !.gitignore
 !*.md
 !themes
+!automations
 
 # Ignore folders.
 .storage
 .cloud
 .google.token
-automations
 custom_components
 deps
 script_configs

@@ -1,0 +1,364 @@
+#############################################################
+  - id: turn_on_front_outside_lights
+    alias: 'AUTOMATION - Front outside lights'
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: FRONT_OUTSIDE_LIGHTS
+    action:
+      - service: switch.turn_on                              
+        data:  
+          entity_id: switch.outside_floods
+
+#############################################################
+  - id: turn_on_back_outside_lights
+    alias: 'AUTOMATION - Back outside lights'
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: BACK_OUTSIDE_LIGHTS
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.back_outside_floodlights
+
+############################################################
+  - id: turn_on_back_porch_lights
+    alias: 'AUTOMATION - Back porch lights'
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: BACK_PORCH_LIGHTS
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.back_porch_lights
+
+###########################################################
+  - id: doorbell_turn_on_lights
+    alias: 'AUTOMATION - Doorbell lights'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.skybell_front_door_button
+        from: 'off'
+        to: 'on'
+    condition:
+      condition: or
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+    action:
+      - service: switch.turn_on
+        entity_id: switch.front_outside_floodlights
+
+###########################################################
+  - id: side_door_turn_on_lights
+    alias: 'AUTOMATION - Side door lights'
+    initial_state: true
+    trigger: 
+      - platform: state
+        entity_id: binary_sensor.side_door_contact
+        from: 'off'
+        to: 'on'
+    condition:
+      condition: or
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+    action:
+      - service: switch.turn_on
+        entity_id: switch.side_door_light
+
+##########################################################
+  - id: sandys_light_on
+    alias: "AUTOMATION - Sandys light on"
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '06:00:00'
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.sandy_s_lights
+
+###########
+  - id: sandys_light_off
+    alias: "AUTOMATION - Sandys light off"
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '21:30:00'
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.sandy_s_lights
+
+#########################################################
+  - id: small_hall_1
+    alias: 'AUTOMATION - Small hall 1'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.small_hallway_switch1
+        to: 'on'
+    action:
+      - service: switch.toggle
+        data:
+          entity_id: switch.small_hallway_switch2
+
+###########
+  - id: small_hall_2
+    alias: 'AUTOMATION - Small hall 2'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.small_hallway_switch1
+        to: 'off'
+    action:
+      - service: switch.toggle
+        data:
+          entity_id: switch.small_hallway_switch2
+        
+#########################################################
+  - id: gameroom_light_1
+    alias: 'AUTOMATION - Gameroom_light 1'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_light_switch
+        to: 'on'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.gameroom_lights
+
+###########
+  - id: gameroom_light_2
+    alias: 'AUTOMATION - Gameroom_light 2'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_light_switch
+        to: 'off'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.gameroom_lights
+
+#########################################################
+  - id: gameroom_light_3
+    alias: 'AUTOMATION - Gameroom_light 3'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_light_switch_2
+        to: 'on'
+    action:
+     - service: light.toggle
+       data:
+          entity_id: light.gameroom_lights
+
+###########
+  - id: gameroom_light_4
+    alias: 'AUTOMATION - Gameroom_light 4'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_light_switch_2
+        to: 'off'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.gameroom_lights
+
+  - id: gameroom_fan_1
+    alias: 'AUTOMATION - Gameroom_fan 1'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_fan_switch
+        to: 'on'
+    action:
+     - service: fan.toggle
+       data:
+          entity_id: fan.gameroom_fan
+
+###########
+  - id: gameroom_fan_2
+    alias: 'AUTOMATION - Gameroom_fan 2'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_fan_switch
+        to: 'off'
+    action:
+      - service: fan.toggle
+        data:
+          entity_id: fan.gameroom_fan
+
+  - id: gameroom_fan_light_1
+    alias: 'AUTOMATION - Gameroom_fan_light 1'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_fan_light_switch
+        to: 'on'
+    action:
+     - service: light.toggle
+       data:
+          entity_id: light.gameroom_fan_light
+
+###########
+  - id: gameroom_fan_light_2
+    alias: 'AUTOMATION - Gameroom_fan_light 2'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.gameroom_fan_light_switch
+        to: 'off'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.gameroom_fan_light
+
+#########################################################
+    
+  - id: front_foyer_1
+    alias: 'AUTOMATION - Front foyer 1'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.front_foyer_light
+        to: 'on'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.foyer_downlight
+
+############          
+  - id: front_foyer_2
+    alias: 'AUTOMATION - Front foyer 2'
+    initial_state: 'on'
+    trigger:
+      - platform: state 
+        entity_id: switch.front_foyer_light
+        to: 'off'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.foyer_downlight
+
+##########################################################
+  - id: kitchen_cabinet_1
+    alias: 'AUTOMATION - Kitchen cabinet lights 1'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.kitchen_cabinet_switch
+        to: 'on'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.kitchen_cabinet_lights
+
+###########   
+  - id: kitchen_cabinet_2
+    alias: 'AUTOMATION - Kitchen cabinet lights 2'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: switch.kitchen_cabinet_switch
+        to: 'off'
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.kitchen_cabinet_lights
+
+#########################################################
+  - id: turn_off_lights_after_30_mins
+    alias: "AUTOMATION - Front lights off after 30 minutes"
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: switch.outside_floodlights
+      to: 'on'
+      for:
+        minutes: 30
+    action:
+      service: switch.turn_off
+      entity_id: switch.outside_floodlights
+#########################################################
+  - id: turn_off_side_light_after_30_mins
+    alias: "AUTOMATION - Side light off after 30 minutes"
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: switch.side_door_light
+      to: 'on'
+      for:
+        minutes: 30
+    action:
+      service: switch.turn_off
+      entity_id: switch.side_door_light
+
+#########################################################
+  - id: turn_off_back_porch_light_after_30_mins
+    alias: 'AUTOMATION - Back porch light off after 30 minutes'
+    initial_state: 'on'
+    trigger:
+      platform: state
+      entity_id: switch.back_porch_lights
+      to: 'on'
+      for:
+        minutes: 30
+    action:
+      service: switch.turn_off
+      entity_id: switch.back_porch_lights
+      
+#########################################################
+  - id: turn_off_back_floods_after_30_minutes
+    alias: 'AUTOMATION - Back floods off after 30 minutes'
+    initial_state: true
+    trigger:
+      platform: state
+      entity_id: switch.back_outside_floodlights
+      to: 'on'
+      for:
+        minutes: 30
+    action:
+      service: switch.turn_off
+      entity_id: switch.back_outside_floodlights
+
+#########################################################
+  - id: attic_lights_1
+    alias: 'AUTOMATION - Attic Lights 1'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.attic_door_contact
+        to: 'on'
+    action:
+      - service: light.turn_on
+        entity_id: light.attic_lights
+#########################################################
+  - id: attic_lights_2
+    alias: 'AUTOMATION - Attic Lights 2'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.attic_door_contact
+        to: 'off'
+    action:
+      - service: light.turn_off
+        entity_id: light.attic_lights

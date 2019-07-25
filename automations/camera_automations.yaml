@@ -1,0 +1,172 @@
+#############################################################
+  - id: display_front_door
+    alias: 'Display Front Door Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_1
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.livingroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.livingroom_display_frontdoor_cam
+
+#############
+  - id: display_side_door
+    alias: 'Display Side Door Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_2
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.livingroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.livingroom_display_sidedoor_cam
+
+#############
+  - id: display_back_door
+    alias: 'Display Back Door Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_3
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.livingroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.livingroom_display_backdoor_cam
+
+#############
+  - id: display_front1
+    alias: 'Display Front1 Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_4
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.livingroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.livingroom_display_front1_cam
+
+#############
+  - id: display_front2
+    alias: 'Display Front2 Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_5
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.livingroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.livingroom_display_front2_cam
+
+#############################################################
+  - id: bedroom_display_front_door_cam
+    alias: 'Bedroom - Display Front Door Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_1
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.bedroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.bedroom_display_frontdoor_cam
+
+#############
+  - id: bedroom_display_side_door_cam
+    alias: 'Bedroom - Display Side Door Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_2
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.bedroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.bedroom_display_sidedoor_cam
+
+############# 
+  - id: bedroom_display_back_door_cam
+    alias: 'Bedroom - Display Back Door Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_3
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.bedroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.bedroom_display_backdoor_cam   
+
+#############
+  - id: bedroom_display_front1_cam
+    alias: 'Bedroom - Display Front1 Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_4
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.bedroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.bedroom_display_front1_cam
+
+############# 
+  - id: bedroom_display_front2_cam
+    alias: 'Bedroom - Display Front2 Cam'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.network_video_recorder_motion_5
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        state: 'playing'
+        entity_id: media_player.bedroom_atv
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.bedroom_display_front2_cam 
+
+#############################################################
+

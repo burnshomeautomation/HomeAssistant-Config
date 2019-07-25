@@ -1,0 +1,454 @@
+#################################################################
+  - id: rain_radar_alert
+    alias: 'ALERT - Rain Radar'
+    initial_state: true
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.dark_sky_nearest_storm_distance
+      below: 5
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: 'device_tracker.adrians_iphone'
+          state: 'not_home'
+        - condition: state
+          entity_id: 'device_tracker.tamarasiphone'
+          state: 'not_home'
+    action:
+      - service: script.turn_on
+        data:
+          entity_id: script.rain_radar_push
+
+#################################################################
+  - id: front_outside_alert
+    alias: 'ALERT - Front Outside Notification'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door_contact 
+        to: 'on'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Front Door opened!'
+          data:
+            attachement:
+              content_type: jpeg
+            push:
+              category: 'camera'
+            entity_id: camera.front_door
+      - service: notify.alexa_media
+        data:
+          target: 
+            - media_player.master_bedroom_echo
+          data:
+            type: announce
+          message: 'Front Door opened!'
+      - delay: 00:05:00
+
+###########
+  - id: front_outside_alert_livingroom_echo
+    alias: 'ALERT - Front Outside Notification - LR Echo'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door_contact
+        to: 'on'
+    condition:
+      condition: time
+      after: '06:00:00'
+      before: '20:00:00'
+    action:
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.living_room_echo
+          data:
+            type: announce
+          message: 'Front Door opened!'
+
+###########
+  - id: front_outside_alert_office_lannouncer
+    alias: 'ALERT - Front Outside Notification - Office'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door_contact
+        to: 'on'
+    action: 
+      - service: notify.office_lannouncer
+        data:
+          message: 'Front Door opened!'
+
+#################################################################
+  - id: side_outside_alert
+    alias: 'ALERT - Side Outside Notification'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.side_door_contact
+        to: 'on'
+        # - platform: state
+        # entity_id: binary_sensor.network_video_recorder_motion_2
+        # from: 'off'
+        # to: 'on'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Side Door opened!'
+          data: 
+            attachment: 
+              content_type: jpeg
+            push:
+              category: 'camera'
+            entity_id: camera.carport
+      - service: notify.alert_tamara
+        data:
+          message: 'Side Door opened!'
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.master_bedroom_echo
+          data:
+            type: announce
+          message: 'Side Door opened!'
+      - delay: 00:05:00
+
+###########
+  - id: side_outside_alert_livingroom_echo
+    alias: 'ALERT - Side Outside Notification - LR Echo'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.side_door_contact
+        to: 'on'
+    condition:
+      condition: time
+      after: '06:00:00'
+      before: '20:00:00'
+    action:
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.living_room_echo
+          data:
+            type: announce
+          message: 'Side Door opened!'
+
+###########
+  - id: side_outside_alert_office_lannouncer
+    alias: 'ALERT - Side Outside Notification - Office'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.side_door_contact
+        to: 'on'
+    action: 
+      - service: notify.office_lannouncer
+        data:
+          message: 'Side Door opened!'
+
+#################################################################
+  - id: back_outside_alert
+    alias: 'ALERT - Back Outside Notification'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_door_contact
+        to: 'on'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Back Door opened!'
+          data:
+            attachment:
+              content_type: jpeg
+            push:
+              category: 'camera'
+            entity_id: camera.back_door
+      - service: notify.alert_tamara
+        data:
+          message: 'Back Door opened!'
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.master_bedroom_echo
+          data: 
+            type: announce
+          message: 'Back Door opened!'
+      - delay: 00:05:00
+
+###########        
+  - id: back_outside_alert_livingroom_echo
+    alias: 'ALERT - Back Outside Notification - LR Echo'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_door_contact
+        to: 'on'
+    condition:
+      condition: time
+      after: '06:00:00'
+      before: '20:00:00'
+    action:
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.living_room_echo
+          data:
+            type: announce
+          message: 'Back Door Opened!'
+
+###########          
+  - id: back_outside_alert_office_lannouncer
+    alias: 'ALERT - Back Outside Notification - Office'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_door_contact
+        to: 'on'
+    action: 
+      - service: notify.office_lannouncer
+        data:
+          message: 'Back Door Opened!'
+
+#################################################################
+  - id: front_door_left_open
+    alias: 'ALERT - Front Door Left Open'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door_contact
+        to: 'on'
+        for: 
+          minutes: 10
+    action: 
+      - service: notify.ios_adrians_iphone
+        data:
+          message: "Front door left open for 10 minutes!"
+      - service: notify.alexa_media
+        data:
+          target: 
+            - media_player.master_bedroom_echo
+          data:
+            type: announce
+          message: "Front door left open for 10 minutes!"
+
+###########
+  - id: front_door_left_open_lr_echo
+    alias: 'ALERT - Front Door Left Open - LR Echo'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action:
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.living_room_echo
+          data:
+            type: announce
+          message: 'Front door left open for 10 minutes'
+
+###########          
+  - id: front_door_left_open_office_lannouncer
+    alias: 'ALERT - Front Door Left Open - Office'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action:
+      - service: notify.office_lannouncer
+        data:
+          message: 'Front door left open for 10 minutes'
+
+#################################################################
+  - id: side_door_left_open
+    alias: 'ALERT - Side Door Left Open'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.side_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action: 
+      - service: notify.ios_adrians_iphone
+        data:
+          message: "Side door left open for 10 minutes"
+      - service: notify.alexa_media
+        data:
+          target: 
+            - media_player.master_bedroom_echo
+          data:
+            type: announce
+          message: "Side door left open for 10 minutes"
+
+###########          
+  - id: side_door_left_open_lr_echo
+    alias: 'ALERT - Side Door Left Open - LR Echo'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.side_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action:
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.living_room_echo
+          data:
+            type: announce
+          message: 'Side door left open for 10 minutes'
+
+###########          
+  - id: side_door_left_open_office_lannouncer
+    alias: 'ALERT - Side Door Left Open - Office'
+    trigger: 
+      - platform: state
+        entity_id: binary_sensor.side_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action: 
+      - service: notify.office_lannouncer
+        data:
+          message: 'Side door left open for 10 minutes'
+
+#################################################################
+  - id: back_door_left_open
+    alias: 'ALERT - Back Door Left Open'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action: 
+      - service: notify.ios_adrians_iphone
+        data:
+          message: "Back door left open for 10 minutes"
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.master_bedroom_echo
+          data:
+            type: announce
+          message: "Back door left open for 10 minutes"
+
+###########          
+  - id: back_door_left_open_lr_echo
+    alias: 'ALERT - Back Door Left Open - LR Echo'
+    initial_state: 'on'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action: 
+      - service: notify.alexa_media
+        data:
+          target: 
+            - media_player.living_room_echo
+          data:
+            type: announce
+          message: 'Back door left open for 10 minutes'
+
+###########          
+  - id: back_door_left_open_office_lannouncer
+    alias: 'ALERT - Back Door Left Open - Office'
+    trigger: 
+      - platform: state
+        entity_id: binary_sensor.back_door_contact
+        to: 'on'
+        for:
+          minutes: 10
+    action:
+      - service: notify.office_lannouncer
+        data:
+          message: 'Back door left open for 10 minutes'
+
+#################################################################
+  - id: Low Disk Space Alert
+    alias: 'ALERT - Low Disk Space'
+    initial_state: true
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.disk_use_percent
+        above: '90'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Disk space low!'
+
+###########
+  - id: Low Disk Space Alert - Trash Can
+    alias: 'ALERT - Low Disk Space - Trash Can'
+    initial_state: true
+    trigger:
+      - platform: time
+        at: '10:00:00'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.trash_can_disk_used
+        above: '90'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Trash Can has low disk space!'
+
+###########
+  - id: Low Disk Space Alert - Gandalf
+    alias: 'ALERT - Low Disk Space - Gandalf'
+    initial_state: true
+    trigger:
+      - platform: time
+        at: '10:00:00'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.gandalf_disk_used
+        above: '90'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Gandalf has low disk space!'
+
+###########
+  - id: Low Disk Space Alert - Plex
+    alias: 'ALERT - Low Disk Space - Plex'
+    initial_state: true
+    trigger:
+      - platform: time
+        at: '10:00:00'
+    condition:
+      - condition: numeric_state
+        entity_id: sensor.plex_disk_used
+        above: '90'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Plex has low disk space!'
+
+#############################################################
+  - id: Office Touchpad Alert
+    alias: 'ALERT - Office Touchpad Power'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: sensor.officetouchpad_powerstate
+        from: 'true'
+        to: 'false'
+    action:
+      - service: notify.ios_adrians_iphone
+        data:
+          message: 'Office Touchpad is unplugged!'
+
+#############################################################
+

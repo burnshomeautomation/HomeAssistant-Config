@@ -1,0 +1,49 @@
+################################################################
+  - id: water_heater_on_morning
+    alias: "Water Heater On - Morning"
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '05:30:00'
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.water_heater_a
+
+########### 
+  - id: water_heater_off_morning
+    alias: "Water Heater Off - Morning"
+    initial_state:  'on'
+    trigger:
+      - platform: time
+        at: '10:30:00'
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.water_heater_a
+
+###########
+  - id: water_heater_on_evening
+    alias: "Water Heater On - Evening"
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '19:30:00'
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.water_heater_a
+
+###########
+  - id: water_heater_off_evening
+    alias: "Water Heater Off - Evening"
+    initial_state: 'on'
+    trigger:
+      - platform: time
+        at: '21:30:00'
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.water_heater_a
+
+################################################################
