@@ -1,0 +1,29 @@
+#############################################################
+  - platform: mqtt
+    name: "Office Fan"
+    command_topic: "sonoff/cmnd/office-switch/POWER1"
+    speed_command_topic: "sonoff/cmnd/office-switch/Dimmer"
+    state_topic: "sonoff/stat/office-switch/RESULT"
+    speed_state_topic: "sonoff/stat/office-switch/RESULT"
+    speed_value_template: "{{ value_json.Dimmer }}"
+    state_value_template: "{{ value_json.POWER1 }}"
+    retain: true
+    payload_off: "OFF"
+    payload_on: "ON"
+    payload_low_speed: "33"
+    payload_medium_speed: "66"
+    payload_high_speed: "100"
+    speeds:
+      - low
+      - medium
+      - high
+
+#############################################################
+  - platform: mqtt
+    name: "Gameroom Fan"
+    command_topic: "sonoff/cmnd/gameroom-fan/POWER"
+    state_topic: "sonoff/stat/gameroom-fan/RESULT"
+    state_value_template: "{{ value_json.POWER }}"
+    retain: true
+    payload_off: "OFF"
+    payload_on: "ON"

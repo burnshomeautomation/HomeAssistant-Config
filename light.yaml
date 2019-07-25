@@ -1,0 +1,70 @@
+###############KITCHEN CABINET LIGHTS
+  - platform: flux_led
+    devices:
+      10.10.10.110:
+        name: kitchen_cabinet_lights
+
+###############OFFICE LIGHTS
+  - platform: mqtt
+    name: "Office Light"
+    command_topic: "sonoff/cmnd/office-switch/POWER3"
+    state_topic: "sonoff/stat/office-switch/POWER3"
+    state_value_template: "{{value_json.POWER3}}"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: false
+
+################MASTER BEDROOM LIGHTS
+  - platform: mqtt
+    name: "Master Bedroom Light"
+    command_topic: "sonoff/cmnd/br_light/POWER"
+    state_topic: "sonoff/stat/br_light/POWER"
+    state_value_template: "{{value_json.POWER}}"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+  - platform: mqtt
+    name: "Gameroom Fan Light"
+    command_topic: "sonoff/cmnd/gameroom-fan-light/POWER"
+    state_topic: "sonoff/stat/gameroom-fan-light/POWER"
+    retain: true
+    payload_on: "ON"
+    payload_off: "OFF"
+
+
+#################FOYER DOWNLIGHT
+  - platform: mqtt
+    name: "Foyer Downlight"
+    command_topic: "tuya/cmnd/foyer_downlight/POWER"
+    state_topic: "tuya/stat/foyer_downlight/RESULT"
+    state_value_template: "{{value_json.POWER}}"
+    brightness_state_topic: "tuya/stat/foyer_downlight/RESULT"
+    brightness_command_topic: "tuya/cmnd/foyer_downlight/Dimmer"
+    brightness_scale: 100
+    brightness_value_template: "{{value_json.Dimmer}}"
+    white_value_state_topic: "tuya/stat/foyer_downlight/RESULT"
+    white_value_command_topic: "tuya/cmnd/foyer_downlight/Channel4"
+    white_value_scale: 100
+    white_value_template: "{{value_json.Channel[3]}}"
+    payload_on: "ON"
+    payload_off: "OFF"
+    rgb_command_topic: "tuya/cmnd/foyer_downlight/Color2"
+    rgb_state_topic: "tuya/stat/foyer_downlight/RESULT"
+    rgb_value_template: "{{value_json.Color.split(',')[0:3]|join(',')}}"
+
+#########################################################
+  - platform: group
+    name: Gameroom Lights
+    entities: 
+      - light.03571318807d3a635442
+      - light.6760761084f3eb750a88
+
+  - platform: group
+    name: Attic Lights
+    entities:
+      - light.dimming_lightbulb_adapter51b7
+      - light.dimming_lightbulb_adapter5b59
+

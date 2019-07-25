@@ -25,14 +25,10 @@ ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 customize.yaml
-fan.yaml
 groups.yaml
 home-assistant.log
 home-assistant__v2.db
 homekit_controller-entity-map
-input_boolean.yaml
-input_select.yaml
-light.yaml
 notify.yaml
 panel_iframe.yaml
 remote.yaml

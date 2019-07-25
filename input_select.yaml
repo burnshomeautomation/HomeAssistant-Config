@@ -1,0 +1,15 @@
+  hass_theme:
+    name: HASS Themes
+    options:
+     - 'default'
+     - 'solarized'
+     - 'dark_orange'
+     - 'midnight'
+     - 'dark_red'
+     - 'dark_blue'
+     - 'dark_theme'
+     - 'teal_theme'
+     - 'pmxmononight'
+     - 'night'
+    icon: 'mdi:theme-light-dark'
+
