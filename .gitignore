@@ -29,11 +29,7 @@ groups.yaml
 home-assistant.log
 home-assistant__v2.db
 homekit_controller-entity-map
-notify.yaml
-panel_iframe.yaml
-remote.yaml
 scripts.yaml
-sensor.yaml
 shell_command.yaml
 skybell_cache.pickle
 smartthings

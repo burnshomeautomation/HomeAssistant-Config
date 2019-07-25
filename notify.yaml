@@ -1,0 +1,39 @@
+###########ADRIAN SMS
+  - name: alert_adrian
+    platform: smtp
+    server: smtp.gmail.com
+    port: 587
+    timeout: 15
+    sender: !secret gmail
+    encryption: starttls
+    username: !secret gmail_user
+    password: !secret gmail_pw
+    recipient: !secret adrians_cell
+    debug: true
+
+###########TAMARA SMS
+  - platform: smtp
+    name: alert_tamara
+    server: smtp.gmail.com
+    port: 587
+    timeout: 15
+    sender: !secret gmail
+    encryption: starttls
+    username: !secret gmail_user
+    password: !secret gmail_pw
+    recipient: !secret tamaras_cell
+
+###########IOS PUSH
+  - platform: ios
+    name: iOSApp
+    target: !secret ios_key
+  - platform: ios
+    name: iOSApp-Tamar
+    target: !secret ios_key_tamara
+
+###########LANNOUNCER
+  - platform: lannouncer
+    name: office_lannouncer
+    host: 10.10.10.35
+
+####################################################

@@ -1,0 +1,174 @@
+#################################################################
+  - platform: yr
+
+#################################################################    
+  - platform: plex
+    host: 10.10.10.8
+    username: !secret user
+    password: !secret plex_pw
+
+#################################################################
+  - platform: darksky
+    forecast:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    api_key: !secret darksky_api
+    monitored_conditions:
+      - summary
+      - icon
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - precip_type
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - apparent_temperature
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - dew_point
+      - wind_speed
+      - wind_bearing
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - ozone
+      - minutely_summary
+      - hourly_summary
+      - daily_summary
+      - precip_intensity_max
+
+#################################################################
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+
+#################################################################
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/unifi
+    name: Unifi Status
+    value_template: '{{ value_json.status  }}'
+
+##################
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/dockermon
+    name: HA-dockermon Status
+    value_template: '{{ value_json.status  }}'
+
+##################    
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/portainer
+    name: Portainer Status
+    value_template: '{{ value_json.status  }}'
+
+##################    
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/tasmoadmin
+    name: TasmoAdmin Status
+    value_template: '{{ value_json.status }}'
+
+##################
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/mosquitto
+    name: Mosquitto Status
+    value_template: '{{ value_json.status }}'
+
+##################    
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/adb
+    name: ADB Status
+    value_template: '{{ value_json.status }}'
+
+##################    
+  - platform: rest
+    resource: http://10.10.10.28:8126/container/glances
+    name: Glances Status
+    value_template: '{{ value_json.status }}'
+
+########################################################################    
+  - platform: template
+    sensors:
+      date_template:
+        friendly_name: 'Date'
+        value_template: '{{ as_timestamp(now()) | timestamp_custom("%A, %B %d, %Y", True) }}'
+      therm_a_temp:
+        friendly_name: 'Small AC Temperature'
+        value_template: '{{ states.climate.thermostat_a.attributes.current_temperature }}'
+      therm_a_hum:
+        friendly_name: 'Small AC Humidity'
+        value_template: '{{ states.climate.thermostat_a.attributes.current_humidity }}'
+      therm_b_temp:
+        friendly_name: 'Large AC Temperature'
+        value_template: '{{ states.climate.thermostat_b.attributes.current_temperature }}'
+      therm_b_hum:
+        friendly_name: 'Large AC Humidity'
+        value_template: '{{ states.climate.thermostat_b.attributes.current_humidity }}'
+
+######################################################################      
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: "/"
+      - type: memory_use_percent
+      - type: last_boot
+      - type: processor_use
+        
+###############
+  - platform: glances
+    name: "Trash Can"
+    host: 10.10.10.13
+    version: 3
+    resources:
+      - disk_use_percent
+      - memory_use_percent
+      - cpu_use_percent
+
+###############        
+  - platform: glances
+    name: "Gandalf"
+    host: 10.10.10.10
+    version: 3
+    resources:
+      - disk_use_percent
+      - memory_use_percent
+      - cpu_use_percent
+
+###############        
+  - platform: glances
+    name: "Plex"
+    host: 10.10.10.19
+    version: 3
+    resources:
+      - disk_use_percent
+      - memory_use_percent
+      - cpu_use_percent
+
+###############        
+  - platform: glances
+    name: "Docker"
+    host: 10.10.10.28
+    version: 3
+    resources:
+      - docker_active
+      - docker_cpu_use
+      - docker_memory_use
+
+#####################################################################
+  - platform: mqtt
+    state_topic: "wallpanel/mywallpanel/sensor/battery"
+    name: "Office Touchpad Battery"
+    unit_of_measurement: "%"
+    value_template: ''
+
+#################    
+  - platform: mqtt
+    state_topic: "wallpanel/mywallpanel/sensor/light"
+    name: "Office Touchpad Light Level"
+    unit_of_measurement: "lx"
+    value_template: ''
+
+######################################################################    

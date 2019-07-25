@@ -1,0 +1,32 @@
+tasmoadmin:
+  title: 'TasmoAdmin'
+  url: 'http://10.10.10.28:9999'
+  icon: mdi:home-automation
+plex:
+  title: 'Plex'
+  url: 'http://10.10.10.19:32400/web/index.html'
+  icon: mdi:plex
+unifi:
+  title: 'Unifi'
+  url: 'https://10.10.10.28:8443'
+  icon: mdi:wifi
+portainer:
+  title: "Portainer"          
+  url: "http://10.10.10.28:9000"
+  icon: mdi:docker
+trash_can_glances:
+  title: "Glances - Trash Can"
+  url: "http://10.10.10.13:61208"
+  icon: mdi:memory
+gandalf_glances:
+  title: "Glances - Gandalf"
+  url: "http://10.10.10.10:61208"
+  icon: mdi:memory
+plex_glances:
+  title: "Glances - Plex"
+  url: "http://10.10.10.19:61208"
+  icon: mdi:plex
+docker_glances:
+  title: "Glances - Docker"
+  url: "http://10.10.10.28:61208"
+  icon: mdi:docker
