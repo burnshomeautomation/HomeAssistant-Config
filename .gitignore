@@ -24,7 +24,6 @@ www
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
-binary_sensor.yaml
 cameras.yaml
 cloud.yaml
 customize.yaml

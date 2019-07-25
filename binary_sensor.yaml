@@ -1,0 +1,20 @@
+##################DOORBELL 
+  - platform: skybell
+    monitored_conditions:
+      - button
+
+##################CAMERA SENSORS
+  - platform: hikvision
+    host: 10.10.10.9
+    username: !secret camera_username
+    password: !secret camera_password
+  
+##################OFFICE TOUCHPAD
+  - platform: mqtt
+    state_topic: "wallpanel/mywallpanel/sensor/motion"
+    name: "Office Motion"
+    payload_on: '{"value":true}'
+    payload_off: '{"value":false}'
+    device_class: motion
+
+###################################
