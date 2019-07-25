@@ -1,0 +1,117 @@
+################################################################
+  google_actions:
+    filter:
+      exclude_domains:
+        - group
+
+################################################################
+  alexa:
+    filter:
+      include_entities:
+        - switch.lr_fan_power
+        - switch.lr_fanlight_power
+        - light.office_light
+        - fan.office_fan
+        - switch.livingroomtv
+        - switch.small_hallway_switch2
+        - switch.back_outside_floodlights
+        - switch.back_porch_lights
+        - media_player.livingroom_atv
+        - switch.master_bedroom_fan
+        - light.master_bedroom_light
+        - media_player.bedroom_atv
+        - switch.bedroomtv
+        - light.foyer_downlight
+        - switch.water_heater_a
+        - switch.kitchentv
+        - switch.side_door_light
+        - script.toggle_livingroom_cam_display
+        - script.toggle_bedroom_cam_display
+        - light.gameroom_lights
+        - fan.gameroom_fan
+        - light.gameroom_fan_light
+    entity_config:
+      switch.lr_fan_power:
+        name: Livingroom Fan
+        description: The ceiling fan in the livingroom
+        display_categories: SWITCH
+      switch.lr_fanlight_power:
+        name: Livingroom Fan Light
+        description: The ceiling fan light in the livingroom
+      switch.livingroomtv:
+        name: Livingroom TV
+        description: The TV in the livingroom
+        display_categories: SWITCH
+      light.office_light:
+        name: Office Lights
+        description: The light switch in the office
+        display_categories: LIGHT
+      fan.office_fan:
+        name: Office Fan
+        description: The fan switch in the office
+        display_categories: SWITCH
+      switch.small_hallway_switch2:
+        name: Small Hall Lights
+        description: The lights in the small hallway
+        display_categories: LIGHT
+      switch.back_outside_floodlights:
+        name: Back Outside Lights
+        description: The lights in the backyard
+        display_categories: LIGHT
+      switch.back_porch_lights:
+        name: Back Porch Lights
+        description: The back porch lights
+        display_categories: LIGHT
+      media_player.livingroom_atv:
+        name: Livingroom Apple TV
+        description: The apple tv in the livingroom
+        display_categories: TV
+      media_player.bedroom_atv:
+        name: Bedroom Apple TV
+        description: The apple tv in the bedroom
+        display_categories: TV
+      switch.master_bedroom_fan:
+        name: Bedroom Fan
+        description: The fan in the bedroom
+        display_categories: SWITCH
+      light.master_bedroom_light:
+        name: Bedroom Light
+        description: The light in the bedroom
+        display_categories: LIGHT
+      switch.bedroomtv:
+        name: Bedroom TV
+        description: The tv in the bedroom
+        display_categories: SWITCH
+      light.foyer_downlight:
+        name: Foyer Light
+        description: The light in the front foyer
+        display_categories: LIGHT
+      switch.water_heater_a:
+        name: Water Heater A
+        description: The water heater on the left side
+        display_categories: SWITCH
+      switch.kitchentv:
+        name: Kitchen TV
+        description: The TV in the kitchen
+        display_categories: SWITCH
+      switch.side_door_light:
+        name: Side Door Light
+        description: The light at the side door.
+        display_categories: LIGHT
+      script.toggle_livingroom_cam_display:
+        name: Motion Detection Livingroom
+        description: Motion detection alerts on livingroom tv
+      script.toggle_bedroom_cam_display:
+        name: Motion Detection Bedroom
+        description: Motion detection alerts on bedroom tv
+      light.gameroom_lights:
+        name: Gameroom Lights
+        description: Lights in gameroom
+      fan.gameroom_fan:
+        name: Gameroom Fan
+        description: Fan in gameroom
+      light.gameroom_fan_light:
+        name: Gameroom Fan Light
+        description: Fan light in gameroom
+
+################################################################

@@ -1,0 +1,54 @@
+########################################################
+  - platform: generic
+    name: Front Door
+    still_image_url: 'http://10.10.10.9/ISAPI/Streaming/channels/101/picture'
+    username: !secret camera_username
+    password: !secret camera_password
+    stream_source: !secret camera_frontdoor
+
+##############
+  - platform: generic
+    name: Carport
+    still_image_url: 'http://10.10.10.9/ISAPI/Streaming/channels/201/picture'
+    username: !secret camera_username
+    password: !secret camera_password
+    stream_source: !secret camera_carport
+                      
+##############
+  - platform: generic
+    username: !secret camera_username
+    password: !secret camera_password
+    still_image_url: 'http://10.10.10.9/ISAPI/Streaming/channels/301/picture'
+    stream_source: !secret camera_backdoor
+    name: Back Door
+
+##############
+  - platform: generic
+    username: !secret camera_username
+    password: !secret camera_password
+    still_image_url: 'http://10.10.10.9/ISAPI/Streaming/channels/401/picture'
+    stream_source: !secret camera_front1
+    name: Front 1
+               
+##############
+  - platform: generic
+    username: !secret camera_username
+    password: !secret camera_password 
+    still_image_url: 'http://10.10.10.9/ISAPI/Streaming/channels/501/picture'
+    stream_source: !secret camera_front2
+    name: Front 2
+ 
+########################################################
+  - platform: skybell
+
+########################################################
+  - platform: generic
+    name: Weather Radar
+    still_image_url: !secret weatherradar
+
+########################################################    
+  - platform: mjpeg
+    name: Office Touchpad
+    mjpeg_url: http://10.10.10.35:2971/camera/stream
+
+########################################################    
