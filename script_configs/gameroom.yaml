@@ -1,0 +1,114 @@
+####################################################################
+  avr_on:
+    alias: 'AVR - On'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: PowerOn
+          device:
+            40927104
+      - delay: 00:00:01
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: PowerOn
+          device:
+            40927104
+
+################
+  avr_off:
+    alias: 'AVR - Off'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: PowerOff
+          device:
+            40927104
+      - delay: 00:00:01
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: PowerOff
+          device:
+            40927104
+  
+################            
+  avr_wii_input:
+    alias: 'AVR - Wii Input'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command:  InputDVD
+          device:
+            40927104
+
+################            
+  avr_xbox_input:
+    alias: 'AVR - Xbox Input'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command:  InputVideo1
+          device:
+            40927104
+
+################            
+  avr_ps3_input:
+    alias: 'AVR - PS3 Input'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command:  InputVideo2
+          device:
+            40927104
+
+################            
+  avr_mute:
+    alias: 'AVR - Mute'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: Mute
+          device:
+            40927104
+
+################            
+  avr_vol_up:
+    alias: 'AVR - Volup'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: VolumeUp
+          device:
+            40927104
+
+################        
+  avr_vol_down:
+    alias: 'AVR - Voldown'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: VolumeDown
+          device:
+            40927104
+           
+################           
+  avr_menu:
+    alias: 'AVR - Menu'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroomhub
+          command: Menu
+          device:
+            40927104
+
+##################################################################           

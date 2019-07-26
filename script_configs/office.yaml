@@ -1,0 +1,9 @@
+######################################################################
+  sleep_gandalf:
+    alias: 'Sleep Gandalf'
+    sequence:
+      - service: switch.toggle
+        data_template:
+          entity_id: switch.sleep_gandalf
+
+#####################################################################

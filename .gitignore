@@ -8,6 +8,7 @@
 !*.md
 !themes
 !automations
+!script_configs
 
 # Ignore folders.
 .storage
@@ -15,7 +16,6 @@
 .google.token
 custom_components
 deps
-script_configs
 scripts
 tts
 www
@@ -29,9 +29,9 @@ groups.yaml
 home-assistant.log
 home-assistant__v2.db
 homekit_controller-entity-map
-scripts.yaml
 shell_command.yaml
 skybell_cache.pickle
 smartthings
 ui-lovelace.yaml
 zones.yaml
+script_configs/test.yaml

@@ -1,0 +1,217 @@
+########################################################################
+  kitchen_tv_power:
+    alias: 'Kitchen TV - Power Toggle'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DF10EF"}'
+          qos: 2
+
+################          
+  kitchen_tv_mute:
+    alias: 'Kitchen TV - Mute'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DF906F"}'
+          qos: 2
+
+################          
+  kitchen_tv_volup:
+    alias: 'Kitchen TV - Volume Up'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DF40BF"}'
+          qos: 2
+
+################          
+  kitchen_tv_voldown:
+    alias: 'Kitchen TV - Volume Down'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DFC03F"}'
+          qos: 2
+
+################          
+  kitchen_tv_menu:
+    alias: 'Kitchen TV - Menu'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DFC23D"}'
+          qos: 2
+
+################          
+  kitchen_tv_hdmiinput:
+    alias: 'Kitchen TV - HDMI Input'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DF639C"}'
+          qos: 2
+
+###############          
+  kitchen_tv_exit:
+    alias: 'Kitchen TV - Exit'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DF926D"}'
+          qos: 2
+
+###############          
+  kitchen_tv_chup:
+    alias: 'Kitchen TV - ChUp'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DF00FF"}'
+          qos: 2
+
+###############          
+  kitchen_tv_chdown:
+    alias: 'Kitchen TV - ChDown'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DF807F"}'
+          qos: 2
+
+###############          
+  kitchen_tv_input:
+    alias: 'Kitchen TV - Input'
+    sequence:
+      - service: mqtt.publish
+        data:
+          topic: 'tuya/cmnd/kitchen_ir/IRsend'
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x20DFF40B"}'
+          qos: 2          
+
+########################################################################
+  kitchen_firetv_netflix:
+    alias: 'Kitchen FireTV - Netflix'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "am start -a android.intent.action.VIEW -d -n com.netflix.ninja/.MainActivity"
+
+##############          
+  kitchen_firetv_plex:
+    alias: 'Kitchen FireTV - Plex'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "monkey -p com.plexapp.android -c android.intent.category.LAUNCHER 1"
+
+##############          
+  kitchen_firetv_pandora:
+    alias: 'Kitchen FireTV - Pandora'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "monkey -p com.pandora.android.gtv -c android.intent.category.LAUNCHER 1"
+
+##############          
+  kitchen_firetv_play:
+    alias: 'Kitchen FireTV - Play'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "input keyevent 126"
+
+##############          
+  kitchen_firetv_pause:
+    alias: 'Kitchen FireTV - Pause'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "input keyevent 127"
+
+##############          
+  kitchen_firetv_stop:
+    alias: 'Kitchen FireTV - Stop'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "input keyevent 86"
+
+##############          
+  kitchen_firetv_home:
+    alias: 'Kitchen FireTV - Home'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "HOME"
+
+##############          
+  kitchen_firetv_enter:
+    alias: 'Kitchen FireTV - Enter'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "ENTER"
+
+##############          
+  kitchen_firetv_right:
+    alias: 'Kitchen FireTV - Right'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "RIGHT"
+
+##############          
+  kitchen_firetv_left:
+    alias: 'Kitchen FireTV - Left'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "LEFT"
+
+##############          
+  kitchen_firetv_up:
+    alias: 'Kitchen FireTV - Up'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "UP"
+
+##############          
+  kitchen_firetv_down:
+    alias: 'Kitchen FireTV - Down'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "DOWN"
+
+##############          
+  kitchen_firetv_directvnow:
+    alias: 'Kitchen FireTV - DirecTVNow'
+    sequence:
+      - service: androidtv.adb_command
+        data_template:
+          entity_id: media_player.kitchen_firetv
+          command: "monkey -p com.att.tv -c android.intent.category.LAUNCHER 1"
+#######################################################################          

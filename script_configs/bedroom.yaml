@@ -1,0 +1,306 @@
+################################################################
+  br_tv_power_toggle:
+    alias: 'Bedroom TV - Power Toggle'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: POWER TOGGLE
+          device: remote.bedroomtv
+
+################
+  br_tv_chup:
+    alias: 'Bedroom TV - Channel Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: CHANNEL UP
+          device: remote.bedroomtv
+
+#################
+  br_tv_chdown:
+    alias: 'Bedroom TV - Channel Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: CHANNEL DOWN
+          device: remote.bedroomtv
+
+#################
+  br_tv_volup:
+    alias: 'Bedroom TV - Volume Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: VOLUME UP
+          device: remote.bedroomtv
+
+#################
+  br_tv_voldown:
+    alias: 'Bedroom TV - Volume Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: VOLUME DOWN
+          device: remote.bedroomtv
+
+#################
+  br_tv_up:
+    alias: 'Bedroom TV - Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: UP
+          device: remote.bedroomtv
+
+#################
+  br_tv_down:
+    alias: 'Bedroom TV - Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: DOWN
+          device: remote.bedroomtv
+
+##################
+  br_tv_left:
+    alias: 'Bedroom TV - Left'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: LEFT
+          device: remote.bedroomtv
+
+###################
+  br_tv_right:
+    alias: 'Bedroom TV - Right'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: RIGHT
+          device: remote.bedroomtv
+
+####################
+  br_tv_enter:
+    alias: 'Bedroom TV - Enter'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroomtv
+          command: ENTER
+          device: remote.bedroomtv
+
+############################################################
+  br_br_powertoggle:
+    alias: 'Bedroom BR - Power Toggle'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: POWER TOGGLE
+          device: remote.bedroombr
+
+######################
+  br_br_down:
+    alias: 'Bedroom BR - Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: DOWN
+          device: remote.bedroombr
+
+#######################
+  br_br_enter:
+    alias: 'Bedroom BR - Enter'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: ENTER
+          device: remote.bedroombr
+
+#######################
+  br_br_left:
+    alias: 'Bedroom BR - Left'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: LEFT
+          device: remote.bedroombr      
+
+#######################
+  br_br_right:
+    alias: 'Bedroom BR - Right'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: RIGHT
+          device: remote.bedroombr
+
+#######################
+  br_br_up:
+    alias: 'Bedroom BR - Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: UP
+          device: remote.bedroombr
+
+########################
+  br_br_exit:
+    alias: 'Bedroom BR - Exit'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: EXIT
+          device: remote.bedroombr
+
+#########################
+  br_br_home:
+    alias: 'Bedroom BR - Home'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: HOME
+          device: remote.bedroombr
+
+#########################
+  br_br_menu:
+    alias: 'Bedroom BR - Menu'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: MENU
+          device: remote.bedroombr
+
+##########################
+  br_br_openclose:
+    alias: 'Bedroom BR - Open-Close'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: OPEN-CLOSE
+          device: remote.bedroombr
+
+###########################
+  br_br_playpause:
+    alias: 'Bedroom BR - Play-Pause'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: PLAY-PAUSE
+          device: remote.bedroombr
+
+############################
+  br_br_next:
+    alias: 'Bedroom BR - Next'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: NEXT
+          device: remote.bedroombr
+
+############################
+  br_br_prev:
+    alias: 'Bedroom BR - Prev'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: PREV
+          device: remote.bedroombr
+
+#############################
+  br_br_stop:
+    alias: 'Bedroom BR - Stop'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.bedroombr
+          command: STOP
+          device: remote.bedroombr
+
+##############################################################          
+  toggle_bedroom_cam_display:
+    alias: 'Bedroom Cam Display'
+    sequence:
+      - service: automation.toggle
+        data_template:
+          entity_id: automation.bedroom_display_front_door_cam
+      - service: automation.toggle
+        data_template:
+          entity_id: automation.bedroom_display_side_door_cam
+      - service: automation.toggle
+        data_template:
+          entity_id: automation.bedroom_display_back_door_cam
+      - service: automation.toggle
+        data_template:
+          entity_id: automation.bedroom_display_front1_cam
+      - service: automation.toggle
+        data_template:
+          entity_id: automation.bedroom_display_front2_cam
+
+#############################
+  bedroom_display_frontdoor_cam:
+    alias: 'Bedroom Display Frontdoor Cam'
+    sequence:
+      - service: camera.play_stream
+        data:
+          entity_id: camera.front_door
+          media_player: media_player.bedroom_atv
+
+#############################
+  bedroom_display_sidedoor_cam:
+    alias: 'Bedroom Display Sidedoor Cam'
+    sequence:
+      - service: camera.play_stream
+        data:
+          entity_id: camera.carport
+          media_player: media_player.bedroom_atv
+
+#############################
+  bedroom_display_backdoor_cam:
+    alias: 'Bedroom Display Backdoor Cam'
+    sequence:
+      - service: camera.play_stream
+        data:
+          entity_id: camera.back_door
+          media_player: media_player.bedroom_atv
+
+##############################
+  bedroom_display_front1_cam:
+    alias: 'Bedroom Display Front1 Cam'
+    sequence:
+      - service: camera.play_stream
+        data:
+          entity_id: camera.front_1
+          media_player: media_player.bedroom_atv
+ 
+##############################
+  bedroom_display_front2_cam:
+    alias: 'Bedroom Display Front2 Cam'
+    sequence:
+      - service: camera.play_stream
+        data:
+          entity_id: camera.front_2
+          media_player: media_player.bedroom_atv
+
+############################################################

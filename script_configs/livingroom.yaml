@@ -1,0 +1,161 @@
+##################################################################
+  tv_on:
+    alias: 'Livingroom TV - On'
+    sequence:
+      - service: media_player.toggle
+        entity_id: media_player.livingroomatv
+
+#############
+  tv_off:
+    alias: 'Livingroom TV - Off'
+    sequence:
+      - service: media_player.turn_off
+        entity_id: media_player.livingroomtv
+
+##################################################################
+  flash_light1:
+    alias: 'Flash Light 1'
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: group.rgb_light_group
+          brightness: 255
+          rgb_color: [255,0,0]
+      - delay:
+          milliseconds: 100
+      - service: light.turn_off
+        data:
+          entity_id: group.rgb_light_group
+      - delay:
+          milliseconds: 100
+      - service: light.turn_on
+        data:
+          entity_id: group.rgb_light_group
+          brightness: 255
+          rgb_color: [255,0,0]
+      - delay:
+          milliseconds: 100
+      - service: light.turn_off
+        data:
+          entity_id: group.rgb_light_group
+      - delay:
+          milliseconds: 100
+      - service: script.turn_on
+        data:
+          entity_id: script.flash_light2
+
+###############
+  flash_light2:
+    alias: 'Flash Light 2'
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: group.rgb_light_group
+          brightness: 255
+          rgb_color: [255,0,0]
+      - delay:
+          milliseconds: 100
+      - service: light.turn_off
+        data:
+          entity_id: group.rgb_light_group
+      - delay:
+          milliseconds: 100
+      - service: light.turn_on
+        data:
+          entity_id: group.rgb_light_group
+          brightness: 255
+          rgb_color: [255,0,0]
+      - delay:
+          milliseconds: 100
+      - service: light.turn_off
+        data:
+          entity_id: group.rgb_light_group
+      - delay:
+          milliseconds: 100
+      - service: script.turn_on
+        data:
+          entity_id: script.flash_light1
+
+#############
+  turn_off_flash:
+    alias: 'Turn off flash'
+    sequence: 
+      - service: script.turn_off
+        data:
+          entity_id: script.flash_light1
+      - service: script.turn_off
+        data:
+          entity_id: script.flash_light2
+      - service: script.turn_off
+        data:
+          entity_id: script.echo_alert1
+      - service: script.turn_off
+        data:
+          entity_id: script.echo_alert2
+
+#####################################################################
+  toggle_livingroom_cam_display:
+    alias: 'Livingroom Cam Display'
+    sequence:
+      - service: automation.toggle
+        data:
+          entity_id: automation.display_front_door_cam
+      - service: automation.toggle
+        data:
+          entity_id: automation.display_side_door_cam
+      - service: automation.toggle
+        data:
+          entity_id: automation.display_back_door_cam
+      - service: automation.toggle
+        data:
+          entity_id: automation.display_front1_cam
+      - service: automation.toggle
+        data:
+          entity_id: automation.display_front2_cam
+
+###############
+  livingroom_display_frontdoor_cam:
+    alias: 'Livingroom Display Frontdoor Cam'
+    sequence:
+      - service: camera.play_stream
+        data_template:
+          entity_id: camera.front_door
+          media_player: media_player.livingroom_atv
+
+###############
+  livingroom_display_sidedoor_cam:
+    alias: 'Livingroom Display Sidedoor Cam'
+    sequence:
+      - service: camera.play_stream
+        data_template:
+          entity_id: camera.carport
+          media_player: media_player.livingroom_atv
+
+###############          
+  livingroom_display_backdoor_cam:
+    alias: 'Livingroom Display Backdoor Cam'
+    sequence:
+      - service: camera.play_stream
+        data_template:
+          entity_id: camera.back_door
+          media_player: media_player.livingroom_atv
+
+###############          
+  livingroom_display_front1_cam:
+    alias: 'Livingroom Display Front1 Cam'
+    sequence:
+      - service: camera.play_stream
+        data_template:
+          entity_id: camera.front_1
+          media_player: media_player.livingroom_atv
+
+###############
+  livingroom_display_front2_cam:
+    alias: 'Livingroom Display Front2 Cam'
+    sequence:
+      - service: camera.play_stream
+        data_template:
+          entity_id: camera.front_2
+          media_player: media_player.livingroom_atv
+
+#################################################################
