@@ -140,18 +140,16 @@
     state_topic: "zemi/stat/gameroom-switch/POWER1"
     payload_on: "ON"
     payload_off: "OFF"
-    retain: true   
+    retain: true
 
-###############################################################
   - platform: mqtt
     name: "Gameroom Fan Switch"
     command_topic: "zemi/cmnd/gameroom-switch/POWER2"
     state_topic: "zemi/stat/gameroom-switch/POWER2"
     payload_on: "ON"
     payload_off: "OFF"
-    retain: true    
+    retain: true
 
-###############################################################
   - platform: mqtt
     name: "Gameroom Fan Light Switch"
     command_topic: "zemi/cmnd/gameroom-switch/POWER3"
@@ -159,6 +157,34 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ###############################################################
   - platform: mqtt

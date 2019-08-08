@@ -9,6 +9,7 @@
 !themes
 !automations
 !script_configs
+!docker-compose
 
 # Ignore folders.
 .storage

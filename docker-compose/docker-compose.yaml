@@ -1,0 +1,122 @@
+version: '3'
+services:
+
+###################PORTAINER
+  portainer: 
+    container_name: portainer
+    image: portainer/portainer
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    ports:
+      - "9000:9000"
+
+####################HASS
+  hass:
+    container_name: hass
+    image: homeassistant/home-assistant:latest
+    restart: always
+    network_mode: "host"
+    volumes:
+      - /home/adrian/home_assistant:/config
+    environment:
+      - TZ=America/Chicago
+
+###################UNIFI
+  unifi:
+    container_name: unifi
+    image: linuxserver/unifi
+    restart: always
+    volumes:
+      - unifi_data:/config
+      - unifi_data:/data
+    environment:
+      - PGID=1000
+      - PUID=1000
+    ports:
+      - "10001:10001/udp"
+      - "3478:3478/udp"
+      - "6789:6789"
+      - "8080:8080"
+      - "8081:8081"
+      - "8443:8443"
+      - "8843:8843"
+      - "8880:8880"
+
+###################DOCKERMON
+  dockermon:
+    container_name: dockermon
+    image: philhawthorne/ha-dockermon
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/adrian/ha-dockermon:/config
+    ports:
+      - 8126:8126
+
+###################GLANCES
+  glances:
+    container_name: glances
+    restart: always
+    image: nicolargo/glances
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 61208-61209:61208-61209
+    environment:
+      - GLANCES_OPT=-w
+
+###################TASMOADMIN
+  tasmoadmin:
+    container_name: tasmoadmin
+    image: raymondmm/tasmoadmin
+    ports:
+      - 9999:80
+    volumes:
+      - tasmoadmin_data:/data
+    restart: always
+
+
+###################MOSQUITTO
+  mosquitto:
+    container_name: mosquitto
+    image: eclipse-mosquitto
+    restart: always
+    volumes:
+      - mosquitto_data:/mosquitto/data
+      - mosquitto_data:/mosquitto/log
+      - mosquitto_data:/mosquitto/config
+    ports:
+      - "1883:1883"
+      - "9001:9001"        
+
+###################ADB
+  adb:
+    container_name: adb
+    restart: always
+    image: sorccu/adb
+    command: sh -c "/config/startup.sh & adb -a -P 5037 server nodaemon"
+    volumes: 
+      - /home/adrian/adb_config:/config
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 5037:5037
+###################WATCHTOWER
+  watchtower:
+    container_name: watchtower
+    restart: always
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: portainer dockermon mosquitto watchtower adb tasmoadmin glances unifi
+######STILL TESTING THIS TO SEE IF IT WORKS PROPERLY
+
+
+###################VOLUMES
+volumes:
+  portainer_data:
+  unifi_data:
+  tasmoadmin_data:
+  mosquitto_data:

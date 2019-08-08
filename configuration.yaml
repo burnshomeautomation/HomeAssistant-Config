@@ -66,11 +66,11 @@ media_player:
     name: 'Gameroom TV'
     host: 10.10.10.123
   - platform: androidtv
-    name: 'Kitchen FireTV'
+    name: "Kitchen FireTV"
     host: 10.10.10.17
     adb_server_ip: 10.10.10.28
     adb_server_port: 5037
-    
+
 
 alexa_media:
   accounts:

@@ -5,7 +5,7 @@
     username: !secret camera_username
     password: !secret camera_password
     stream_source: !secret camera_frontdoor
-
+    authentication: digest
 ##############
   - platform: generic
     name: Carport
