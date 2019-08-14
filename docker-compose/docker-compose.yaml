@@ -103,15 +103,17 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 5037:5037
+
 ###################WATCHTOWER
   watchtower:
     container_name: watchtower
     restart: always
     image: containrrr/watchtower
+    env_file:
+      - docker-compose-secrets.env 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: portainer dockermon mosquitto watchtower adb tasmoadmin glances unifi
-######STILL TESTING THIS TO SEE IF IT WORKS PROPERLY
+    command: --debug true --cleanup true portainer dockermon mosquitto adb tasmoadmin glances unifi
 
 
 ###################VOLUMES

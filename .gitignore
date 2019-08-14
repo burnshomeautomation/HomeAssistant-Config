@@ -36,3 +36,4 @@ smartthings
 ui-lovelace.yaml
 zones.yaml
 script_configs/test.yaml
+docker_compose/docker-compose-secrets.env
