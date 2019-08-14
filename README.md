@@ -24,7 +24,7 @@ Devices I currently have:
 - <a href="https://www.amazon.com/Nintendo-Switch-Neon-Red-Blue-Joy/dp/B01MUAGZ49/ref=sr_1_3?keywords=nintendo%2Bswitch&qid=1565799736&s=gateway&sr=8-3&th=1">Nintendo Switch</a>
 - <a href="https://www.amazon.com/Microsoft-Xbox-One-Console-Wireless-Controller/dp/B07NBVPZ6L/ref=sr_1_4?keywords=xboxx%2Bone&qid=1565799666&s=gateway&sr=8-4&th=1">Xbox ONE</a>
 - <a href="https://www.amazon.com/PlayStation-4-Slim-1TB-Console/dp/B071CV8CG2/ref=sr_1_3?keywords=playstation+4&qid=1565799595&s=gateway&sr=8-3">Playstation 4</a>
-- Incipio lightbulb adapters
+- <a href="https://www.amazon.com/Incipio-CommandKit-Wireless-Automation-Compatible/dp/B019UC4YAK">Incipio lightbulb adapters</a>
 - Incipio Smart outlet adapters
 - <a href="https://www.walmart.com/ip/Merkury-Innovations-White-and-Color-BR30-Smart-Light-Bulb-65W-LED-1-Pack/399574073">Merkury Color Smart BR30 Bulbs</a>
 - WeMo Smart plug
