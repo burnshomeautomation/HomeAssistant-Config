@@ -1,6 +1,6 @@
 Here are all of my Config files from <a href="http://home-assistant.io">Home Assistant</a>! It's a work in progress.
 
-Please hit the ⭐️ to keep up with everything!  Also check out and subscribe to my <a href="https://www.youtube.com/channel/UCSKQutOXuNLvFetrKuwudpg">youtube channel</a> for tons of videos and tutorials!!!
+Please hit the ⭐️ to keep up with everything!  Also check out and subscribe to my <a href="https://www.youtube.com/channel/UCSKQutOXuNLvFetrKuwudpg">youtube channel</a> for tons of videos and tutorials!!!  If you like what you see, then..... <a href="https://www.buymeacoffee.com/c1THy8VNA" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 Devices I currently have:
 - Ubiquiti Networks Unifi AC Lite
@@ -17,7 +17,7 @@ Devices I currently have:
 - GE Zwave switches
 - Zooz Zwave switches
 - Skybell HD
-- Harmony Hub
+- <a href="https://www.amazon.com/Logitech-915-000238-Smartphone-Entertainment-Refurbished/dp/B012EHUK74/ref=sr_1_2_sspa?keywords=harmony+hub&qid=1568747946&sr=8-2-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzS04wVjE1UTZOOTQyJmVuY3J5cHRlZElkPUEwMzcwNTg1MTlZMUpaUUtGUTFEUiZlbmNyeXB0ZWRBZElkPUEwNTcxMTc2MVFISEJCOVpUVVJKMCZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU=">Harmony Hub </a>
 - iTach Global Cache wf2ir
 - LG Smart TV
 - Laview NVR with Security Cameras
