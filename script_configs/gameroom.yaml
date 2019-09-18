@@ -4,111 +4,473 @@
     sequence:
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: PowerOn
           device:
             40927104
       - delay: 00:00:01
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: PowerOn
           device:
             40927104
 
-################
   avr_off:
     alias: 'AVR - Off'
     sequence:
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: PowerOff
           device:
             40927104
       - delay: 00:00:01
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: PowerOff
           device:
             40927104
   
-################            
   avr_wii_input:
     alias: 'AVR - Wii Input'
     sequence:
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
-          command:  InputDVD
-          device:
-            40927104
-
-################            
-  avr_xbox_input:
-    alias: 'AVR - Xbox Input'
-    sequence:
-      - service: remote.send_command
-        data_template:
-          entity_id: remote.gameroomhub
-          command:  InputVideo1
-          device:
-            40927104
-
-################            
-  avr_ps3_input:
-    alias: 'AVR - PS3 Input'
-    sequence:
-      - service: remote.send_command
-        data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command:  InputVideo2
           device:
             40927104
 
-################            
   avr_mute:
     alias: 'AVR - Mute'
     sequence:
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: Mute
           device:
             40927104
 
-################            
   avr_vol_up:
     alias: 'AVR - Volup'
     sequence:
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: VolumeUp
           device:
             40927104
 
-################        
   avr_vol_down:
     alias: 'AVR - Voldown'
     sequence:
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: VolumeDown
           device:
             40927104
            
-################           
   avr_menu:
     alias: 'AVR - Menu'
     sequence:
       - service: remote.send_command
         data_template:
-          entity_id: remote.gameroomhub
+          entity_id: remote.gameroom_hub
           command: Menu
           device:
             40927104
 
 ##################################################################           
+  wii_power:
+    alias: 'Wii - Power'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: PowerToggle
+          device:
+            40931556
+
+  wii_down:
+    alias: 'Wii - Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionDown
+          device: 'Nintendo Wii'
+
+  wii_left:
+    alias: 'Wii - Left'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionLeft
+          device: 'Nintendo Wii'
+
+  wii_right:
+    alias: 'Wii - Right'
+    sequence:
+      - service: remote.send_command
+        data_template: 
+          entity_id: remote.gameroom_hub
+          command: DirectionRight
+          device: 'Nintendo Wii'
+
+  wii_up:
+    alias: 'Wii - Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionUp
+          device: 'Nintendo Wii'
+
+  wii_a:
+    alias: 'Wii - A'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: A
+          device: 'Nintendo Wii'
+
+  wii_b:
+    alias: 'Wii - B'
+    sequence: 
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: B
+          device: 'Nintendo Wii'
+
+  wii_plus:
+    alias: 'Wii - Plus'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: +
+          device: 'Nintendo Wii'
+
+  wii_minus:
+    alias: 'Wii - Minus'  
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: '-'
+          device: 'Nintendo Wii'
+
+  wii_one:
+    alias: 'Wii - One'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: 1
+          device: 'Nintendo Wii'
+
+  wii_two:
+    alias: 'Wii - Two'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: 2
+          device: 'Nintendo Wii'
+
+  wii_home:
+    alias: 'Wii - Home'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Home
+          device: 'Nintendo Wii'
+
+##################################################################
+  samsungtv_on:
+    alias: 'Samsung TV - On'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: PowerOn
+          device: 'Samsung TV'
+
+  samsungtv_off:
+    alias: 'Samsung TV - Off'
+    sequence: 
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: PowerOff
+          device: 'Samsung TV'
+
+##################################################################
+  sonyps4_off:
+    alias: 'Sony PS4 - Off'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: PowerOff
+          device: 'Sony PS4'
+          
+  sonyps4_down:
+    alias: 'Sony PS4 - Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionDown
+          device: 'Sony PS4'
+          
+  sonyps4_left:
+    alias: 'Sony PS4 - Left'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionLeft
+          device: 'Sony PS4'
+  
+  sonyps4_right:
+    alias: 'Sony PS4 - Right'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionRight
+          device: 'Sony PS4'
+
+  sonyps4_up:
+    alias: 'Sony PS4 - Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionUp
+          device: 'Sony PS4'
+
+  sonyps4_ok:
+    alias: 'Sony PS4 - OK'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: OK
+          device: 'Sony PS4'
+
+  sonyps4_stop:
+    alias: 'Sony PS4 - Stop'
+    sequence:
+      - service: remote.send_command
+        data_template: 
+          entity_id: remote.gameroom_hub
+          command: Stop
+          device: 'Sony PS4'
+
+  sonyps4_play:
+    alias: 'Sony PS4 - Play'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub 
+          command: Play
+          device: 'Sony PS4'
+
+  sonyps4_rewind:
+    alias: 'Sony PS4 - Rewind'
+    sequence:
+      - service: remote.send_command
+        data_template: 
+          entity_id: remote.gameroom_hub
+          command: Rewind
+          device: 'Sony PS4'
+
+  sonyps4_fastforward:
+    alias: 'Sony PS4 - FastForward'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: FastForward
+          device: 'Sony PS4'
+
+  sonyps4_back:
+    alias: 'Sony PS4 - Back'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Back
+          device: 'Sony PS4'
+
+  sonyps4_cross:
+    alias: 'Sony PS4 - Cross'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Cross
+          device: 'Sony PS4'
+
+  sonyps4_circle:
+    alias: 'Sony PS4 - Circle'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Circle
+          device: 'Sony PS4'
+
+  sonyps4_square:
+    alias: 'Sony PS4 - Square'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Square
+          device: 'Sony PS4'
+
+  sonyps4_triangle:
+    alias: 'Sony PS4 - Triangle'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Triangle
+          device: 'Sony PS4'
+
+  sonyps4_ps:
+    alias: 'Sony PS4 - PS'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: PS
+          device: 'Sony PS4'
+
+#########################################################
+  xboxone_on:
+    alias: 'Xbox One - On'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: PowerOn
+          device: 'Xbox One S'
+
+  xboxone_off:
+    alias: 'Xbox One - Off'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: PowerOff
+          device: 'Xbox One S'
+
+  xboxone_down:
+    alias: 'Xbox One - Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionDown
+          device: 'Xbox One S'
+
+  xboxone_left:
+    alias: 'Xbox One - Left'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionLeft
+          device: 'Xbox One S'
+
+  xboxone_right:
+    alias: 'Xbox One - Right'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionRight
+          device: 'Xbox One S'
+
+  xboxone_up:
+    alias: 'Xbox One - Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionUp
+          device: 'Xbox One S'
+
+  xboxone_ok:
+    alias: 'Xbox One - Ok'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: OK
+          device: 'Xbox One S'
+
+  xboxone_stop:
+    alias: 'Xbox One - Stop'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: OK
+          device: 'Xbox One S'
+
+  xboxone_play:
+    alias: 'Xbox One - Play'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Play
+          device: 'Xbox One S'
+
+  xboxone_rewind:
+    alias: 'Xbox One - Rewind'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Rewind
+          device: 'Xbox One S'
+
+  xboxone_fastforward:
+    alias: 'Xbox One - FastForward'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: FastForward
+          device: 'Xbox One S'
+
+  xboxone_xbox:
+    alias: 'Xbox One - Xbox'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Xbox
+          device: 'Xbox One S'
+
+  xboxone_back:
+    alias: 'Xbox One - Back'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Back
+          device: 'Xbox One S'

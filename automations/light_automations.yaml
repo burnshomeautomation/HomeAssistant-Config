@@ -349,8 +349,8 @@
         entity_id: binary_sensor.attic_door_contact
         to: 'on'
     action:
-      - service: light.turn_on
-        entity_id: light.attic_lights
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.attic_lights
 #########################################################
   - id: attic_lights_2
     alias: 'AUTOMATION - Attic Lights 2'
@@ -360,5 +360,5 @@
         entity_id: binary_sensor.attic_door_contact
         to: 'off'
     action:
-      - service: light.turn_off
-        entity_id: light.attic_lights
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.attic_lights

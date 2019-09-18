@@ -141,7 +141,7 @@
   - platform: glances
     name: "Plex"
     host: 10.10.10.19
-    version: 3
+    version: 2
     resources:
       - disk_use_percent
       - memory_use_percent

@@ -30,3 +30,9 @@ docker_glances:
   title: "Glances - Docker"
   url: "http://10.10.10.28:61208"
   icon: mdi:docker
+transmission:
+  title: "Transmission"
+  url: "http://10.10.10.20:9091"
+  icon: mdi:briefcase-download
+
+

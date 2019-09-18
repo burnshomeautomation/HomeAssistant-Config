@@ -4,3 +4,6 @@
     initial: off
 
 #########################################################
+  attic_lights:
+    name: Attic Lights
+    initial: off

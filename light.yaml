@@ -4,16 +4,6 @@
       10.10.10.110:
         name: kitchen_cabinet_lights
 
-###############OFFICE LIGHTS
-  - platform: mqtt
-    name: "Office Light"
-    command_topic: "sonoff/cmnd/office-switch/POWER3"
-    state_topic: "sonoff/stat/office-switch/POWER3"
-    state_value_template: "{{value_json.POWER3}}"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: false
 
 ################MASTER BEDROOM LIGHTS
   - platform: mqtt
@@ -62,9 +52,25 @@
       - light.03571318807d3a635442
       - light.6760761084f3eb750a88
 
-  - platform: group
-    name: Attic Lights
-    entities:
-      - light.dimming_lightbulb_adapter51b7
-      - light.dimming_lightbulb_adapter5b59
+#########################################################
+  - platform: mqtt
+    name: "Office Light"
+    command_topic: "sonoff/cmnd/office-switch/POWER3"
+    state_topic: "sonoff/stat/office-switch/POWER3"
+    state_value_template: "{{value_json.POWER3}}"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+
+
+
+
+
+
+
+
+
+
 

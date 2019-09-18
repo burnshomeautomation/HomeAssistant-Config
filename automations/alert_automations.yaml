@@ -451,4 +451,25 @@
           message: 'Office Touchpad is unplugged!'
 
 #############################################################
+  - id: Torrent Download Completed Alert
+    alias: 'ALERT - Torrent Download Completed'
+    initial_state: true
+    trigger:
+      platform: event
+      event_type: transmission_downloaded_torrent
+    action:
+      service: notify.alert_adrian
+      data_template:
+        title: "Download Completed!!"
+        message: "{{trigger.event.data.name}}"
+
+
+
+
+
+
+
+
+
+
 

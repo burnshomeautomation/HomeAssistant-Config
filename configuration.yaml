@@ -6,7 +6,10 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
+  whitelist_external_dirs:
+    - /config/www/mail_card/
 
+  packages: !include_dir_named includes/packages
 default_config:
 frontend:
   themes: !include_dir_merge_named themes/
@@ -19,8 +22,6 @@ updater:
   include_used_components: true
 
 discovery:
-  enable: 
-    - homekit
 
 conversation:
 system_health:
@@ -88,19 +89,9 @@ alexa_media:
         - "This Device"
 
 device_tracker:
-  - platform: unifi
-    host: 10.10.10.28
-    username: !secret unifi_user
-    password: !secret unifi_pw
-    verify_ssl: 'False'
-    track_new_devices: false
-  - platform: ping
+  - platform: nmap_tracker
     hosts:
-      ap1: 10.10.10.6
-      ap2: 10.10.10.7
-      camera_dvr: 10.10.10.9
-      livingroomtv: 10.10.10.14
-      adrianstrashcan: 10.10.10.13
+      - 10.10.10.9
 
 ios: 
   push:
@@ -148,8 +139,27 @@ tuya:
   password: !secret tuya_pw
   country_code: 1
 
+transmission:
+  host: 10.10.10.20
+  username: !secret transmission_user
+  password: !secret transmission_pw
+  scan_interval: 60
+  monitored_conditions:
+    - current_status
+    - download_speed
+    - upload_speed
+    - active_torrents
+    - paused_torrents
+    - total_torrents
+    - started_torrents
+    - completed_torrents
 
 wake_on_lan:
+
+homekit:
+  filter:
+    include_entities: 
+      - input_boolean.attic_lights
 
 camera: !include cameras.yaml
 stream:
@@ -162,7 +172,7 @@ light: !include light.yaml
 fan: !include fan.yaml
 remote: !include remote.yaml
 input_select: !include input_select.yaml
-
+input_boolean: !include input_boolean.yaml
 tts:
   - platform: google_translate
     service_name: google_say

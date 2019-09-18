@@ -158,7 +158,13 @@
     payload_off: "OFF"
     retain: true
 
-
+  - platform: mqtt
+    name: "Water Shutoff"
+    command_topic: "zemi/cmnd/water-shutoff/POWER"
+    state_topic: "zemi/stat/water-shutoff/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
 
 
 
