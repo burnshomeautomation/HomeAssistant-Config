@@ -20,6 +20,7 @@ deps
 scripts
 tts
 www
+includes
 
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
@@ -37,3 +38,6 @@ ui-lovelace.yaml
 zones.yaml
 script_configs/test.yaml
 docker_compose/docker-compose-secrets.env
+alexa_media.mrburns414@gmail.com.pickle
+upsmychoice_cookies.pickle
+usps_cache.sqlite
