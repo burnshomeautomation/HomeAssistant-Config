@@ -63,9 +63,6 @@ media_player:
     host: 10.10.10.14
     name: 'Livingroom TV'
     access_token: !secret lg_accesstoken
-  - platform: samsungtv
-    name: 'Gameroom TV'
-    host: 10.10.10.123
   - platform: androidtv
     name: "Kitchen FireTV"
     host: 10.10.10.17

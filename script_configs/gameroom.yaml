@@ -212,6 +212,132 @@
           command: PowerOff
           device: 'Samsung TV'
 
+  samsungtv_mute:
+    alias: 'Samsung TV - Mute'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Mute
+          device: 'Samsung TV'
+
+  samsungtv_voldown:
+    alias: 'Samsung TV - VolDown'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: VolumeDown
+          device: 'Samsung TV'
+
+  samsungtv_volup:
+    alias: 'Samsung TV - VolUp'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: VolumeUp
+          device: 'Samsung TV'
+
+  samsungtv_chdown:
+    alias: 'Samsung TV - ChDown'
+    sequence: 
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: ChannelDown
+          device: 'Samsung TV'
+
+  samsungtv_chup:
+    alias: 'Samsung TV - ChUp'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: ChannelUp
+          device: 'Samsung TV'
+
+  samsungtv_down:
+    alias: 'Samsung TV - Down'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionDown
+          device: 'Samsung TV'
+
+  samsungtv_left:
+    alias: 'Samsung TV - Left'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionLeft
+          device: 'Samsung TV'
+
+  samsungtv_right:
+    alias: 'Samsung TV - Right'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionRight
+          device: 'Samsung TV'
+
+  samsungtv_up:
+    alias: 'Samsung TV - Up'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: DirectionUp
+          device: 'Samsung TV'
+
+  samsungtv_stop:
+    alias: 'Samsung TV - Stop'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Stop
+          device: 'Samsung TV'
+
+  samsungtv_play:
+    alias: 'Samsung TV - Play'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Play
+          device: 'Samsung TV'
+
+  samsungtv_rewind:
+    alias: 'Samsung TV - Rewind'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Rewind
+          device: 'Samsung TV'
+
+  samsungtv_fastforward:
+    alias: 'Samsung TV - Fast Forward'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: FastForward
+          device: 'Samsung TV'
+
+  samsungtv_menu:
+    alias: 'Samsung TV - Menu'
+    sequence:
+      - service: remote.send_command
+        data_template:
+          entity_id: remote.gameroom_hub
+          command: Menu
+          device: 'Samsung TV'
+
 ##################################################################
   sonyps4_off:
     alias: 'Sony PS4 - Off'

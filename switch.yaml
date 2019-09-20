@@ -19,6 +19,7 @@
           - service: media_player.turn_off
             data:
               entity_id: media_player.kitchenfiretv
+
 #################################################################
   - platform: template
     scan_interval: 5
@@ -40,6 +41,7 @@
           - service: media_player.turn_off
             data:
               entity_id: media_player.livingroom_atv
+
 #################################################################
   - platform: template
     scan_interval: 5
@@ -61,6 +63,69 @@
           - service: media_player.turn_off
             data:
               entity_id: media_player.bedroom_atv
+
+#################################################################
+  - platform: template
+    scan_interval: 5
+    switches:
+      all_gameroom:
+        friendly_name: 'All Gameroom'
+        value_template: "{{ is_state('light.gameroom_lights','on') }}"
+        turn_on:
+          - service: remote.turn_on
+            entity_id: remote.gameroom_hub
+            data:
+              activity: 'Play Xbox One'
+          - delay:
+              seconds: 1
+          - service: light.turn_on
+            data:
+              entity_id: light.gameroom_lights
+        turn_off:
+          - service: script.turn_on
+            data:
+              entity_id: script.xboxone_off
+          - delay:
+              seconds: 1
+          - service: script.turn_on
+            data:
+              entity_id: script.xboxone_off
+          - delay:
+              seconds: 1
+          - service: script.turn_on
+            data:
+              entity_id: script.sonyps4_off
+          - delay:
+              seconds: 1
+          - service: script.turn_on
+            data:
+              entity_id: script.sonyps4_off
+          - delay:
+              seconds: 1
+          - service: script.turn_on
+            data:
+              entity_id: script.avr_off
+          - delay:
+              seconds: 1
+          - service: script.turn_on
+            data:
+              entity_id: script.avr_off
+          - delay:
+              seconds: 1
+          - service: script.turn_on
+            data:
+              entity_id: script.samsungtv_off
+          - delay:
+              seconds: 1  
+          - service: script.turn_on
+            data:
+              entity_id: script.samsungtv_off
+          - delay:
+              seconds: 1
+          - service: light.turn_off
+            data:
+              entity_id: light.gameroom_lights
+
 #################################################################
   - platform: mqtt
     name: "Back Porch Lights"
@@ -69,7 +134,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
-################################################################
+
   - platform: mqtt
     name: "Back Outside Floodlights"
     command_topic: "sonoff/cmnd/back_porch/POWER1"
@@ -77,6 +142,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+
 ################################################################
   - platform: mqtt
     name: "Kitchen Cabinet Switch"
@@ -85,6 +151,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+
 ################################################################
   - platform: mqtt
     name: "Small Hallway Switch1"
@@ -93,7 +160,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
-################################################################
+
   - platform: mqtt
     name: "Small Hallway Switch2"
     command_topic: "sonoff/cmnd/smallhall2/POWER"
@@ -101,6 +168,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+
 ###############################################################
   - platform: mqtt
     name: "Master Bedroom Fan"
@@ -109,6 +177,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+
 ###############################################################
   - platform: mqtt
     name: "Water Heater A"
@@ -117,6 +186,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+
 ###############################################################
   - platform: mqtt
     name: "Front Foyer Light"
@@ -125,6 +195,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true
+
 ###############################################################
   - platform: mqtt
     name: "Side Door Light"
@@ -133,6 +204,7 @@
     payload_on: "ON"
     payload_off: "OFF"
     retain: true  
+
 ###############################################################
   - platform: mqtt
     name: "Gameroom Light Switch"
@@ -159,47 +231,13 @@
     retain: true
 
   - platform: mqtt
-    name: "Water Shutoff"
-    command_topic: "zemi/cmnd/water-shutoff/POWER"
-    state_topic: "zemi/stat/water-shutoff/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-###############################################################
-  - platform: mqtt
     name: "Gameroom Light Switch 2"
     command_topic: "shelly/cmnd/gameroom-switch2/POWER"
     state_topic: "shelly/stat/gameroom-switch2/POWER"
     payload_on: "ON"
     payload_off: "OFF"
     retain: true 
+
 ###############################################################
 ####DOCKER CONTAINERS
 ##unifi
@@ -209,6 +247,7 @@
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
 ##portainer
   - platform: rest
     resource: http://10.10.10.28:8126/container/portainer
@@ -216,6 +255,7 @@
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
 ##ha-dockermon
   - platform: rest
     resource: http://10.10.10.28:8126/container/dockermon
@@ -223,6 +263,7 @@
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
 ##TasmoAdmin
   - platform: rest
     resource: http://10.10.10.28:8126/container/tasmoadmin
@@ -230,6 +271,7 @@
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
 ##Mosquitto
   - platform: rest
     resource: http://10.10.10.28:8126/container/mosquitto
@@ -237,6 +279,7 @@
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
 ##adb
   - platform: rest
     resource: http://10.10.10.28:8126/container/adb
@@ -244,6 +287,7 @@
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
+
 ##glances
   - platform: rest
     resource: http://10.10.10.28:8126/container/glances
@@ -251,26 +295,31 @@
     body_on: '{"state": "start"}'
     body_off: '{"state": "stop"}'
     is_on_template: '{{ value_json is not none and value_json.state == "running" }}'
-###############################################################################
+
+#############################################################
   - platform: wake_on_lan
     name: Gandalf
     mac_address: "2c:fd:a1:6f:90:3c"
     host: 10.10.10.10
     turn_off:
       service: script.sleep_gandalf
+
   - platform: wake_on_lan
     name: Adrians Trash Can
     mac_address: "80:00:6e:f1:1c:ce"
     host: 10.10.10.13
+
   - platform: wake_on_lan
     name: Nicoles Mac
     mac_address: "c8:bc:c8:e0:fb:d7"
     host: 10.10.10.24
+
   - platform: wake_on_lan
     name: Adrians Mac Pro
     mac_address: "e8:06:88:cc:24:5f"
     host: 10.10.10.20
-###############################################################################
+    
+#############################################################
   - platform: broadlink
     host: 10.10.10.18
     mac: '34:EA:34:6F:F9:80'

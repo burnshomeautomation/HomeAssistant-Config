@@ -32,6 +32,7 @@
         - light.gameroom_fan_light
         - switch.metering_outlet74b5
         - switch.metering_outlet6dbf
+        - switch.all_gameroom
     entity_config:
       switch.lr_fan_power:
         name: Livingroom Fan
@@ -121,4 +122,7 @@
       switch.metering_outlet6dbf:
         name: AppleTV Plug
         description: Power plug for Bedroom Apple TV
+      switch.all_gameroom:
+        name: All The Gameroom
+        description: Switch for most of the gameroom devices
 ################################################################
